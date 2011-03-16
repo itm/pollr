@@ -1,0 +1,33 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:style src="PollAppUi.css" />
+
+    <ui:with field="img"
+		type='de.uniluebeck.itm.ep0.poll.client.ui.PollImageBundle' />
+		
+	<g:DockLayoutPanel unit='EM'>
+		<g:north size="7">
+			<g:HTMLPanel ui:field="pnlHeader" styleName="{style.north}">
+				<table styleName="{style.headerTable}">
+					<tr>
+						<td style="width:87%">
+                            <g:Image resource='{img.pollr}' />
+						</td>
+						<td>
+							<g:Label ui:field="lblLanguages" />
+						</td>
+						<td>
+							<g:ListBox ui:field="lbLanguages" />
+						</td>
+					</tr>
+				</table>
+			</g:HTMLPanel>
+		</g:north>
+		<g:center>
+			<g:SimplePanel ui:field="pnlMain" styleName="{style.center}" />
+		</g:center>
+	</g:DockLayoutPanel>
+
+</ui:UiBinder>

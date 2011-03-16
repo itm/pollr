@@ -1,0 +1,31 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:style src="../PollAppUi.css" />    
+    
+    <g:DialogBox ui:field="dialogBox" text="Failure Notification" animationEnabled="true" modal="true"
+                 glassEnabled="true">
+        <g:VerticalPanel>
+            <g:HTMLPanel styleName="{style.box}">
+                <h3 class="{style.error}">Ooops, something went wrong!</h3>
+                <g:Label ui:field="messageLabel">...</g:Label>
+            </g:HTMLPanel>
+            <g:DisclosurePanel ui:field="disclosurePanel" title="Stacktrace" animationEnabled="true" open="false">
+                <g:header>Show Stacktrace</g:header>
+                <g:ScrollPanel width="500">
+                    <g:Label ui:field="stacktraceLabel" width="500" wordWrap="true" height="300">...</g:Label>
+                </g:ScrollPanel>
+            </g:DisclosurePanel>
+            <g:HTMLPanel styleName="{style.buttonPanel}">
+                <table class="{style.buttonTable}">
+                    <tr>
+                        <td>
+                            <g:Button ui:field="closeButton" addStyleNames="{style.button}">Close</g:Button>
+                        </td>
+                    </tr>
+                </table>
+            </g:HTMLPanel>
+        </g:VerticalPanel>
+    </g:DialogBox>
+</ui:UiBinder>

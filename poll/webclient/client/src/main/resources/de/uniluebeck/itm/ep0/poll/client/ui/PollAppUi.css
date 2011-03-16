@@ -1,0 +1,131 @@
+@CHARSET "ISO-8859-1";
+
+.normal {
+    padding: 1em;
+}
+
+.error {
+    padding: 1em;
+    color: #ff4500;;
+}
+
+.boxes {
+    width: 180px;
+    height: 24px;
+    margin-left: .5em;
+    margin-bottom: .5em;
+}
+
+.largeboxes {
+    width: 180px;
+    height: 48px;
+    margin-left: .5em;
+    margin-bottom: .5em;
+}
+
+.localizedboxes {
+    width: 180px;
+    height: 24px;
+    margin-left: -3px;
+    margin-bottom: -3px;
+    background-color:inactiveborder;
+}
+
+.buttons {
+    margin-top: 1em;
+}
+
+.headings {
+    font-weight: bold;
+}
+
+.labels {
+    margin-left: .5em;
+}
+
+.centered {
+    text-align: center;
+}
+
+.checkboxes {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: .5em;
+}
+
+.radio {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: .5em;
+    padding-top: 10px;
+}
+
+.north {
+    background-color: #ffffff;
+    padding: .5em;
+    border-bottom: solid 3px #dddddd;
+}
+
+.center {
+    background-color: white;
+    padding: .5em;
+}
+
+.mylink {
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.box {
+    padding: 15px;
+    width: 500px;
+}
+
+.buttonPanel {
+    width: 100%;
+    background-color: #d0e4f6;
+}
+
+.buttonTable {
+    margin-left: auto;
+    margin-right: 0px;
+    padding: 2px;
+}
+
+.button {
+    width: 80px;
+}
+.headerTable {
+    table-layout: fixed;
+    text-align: right;
+    width: 100%;
+
+}
+
+.pollsTable {
+
+}
+
+.optionListName {
+    font-weight: bold; 
+}
+
+/** development mode :)
+td { border:thin solid inactiveborder;}
+*/
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.heading {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 5px;
+}
+

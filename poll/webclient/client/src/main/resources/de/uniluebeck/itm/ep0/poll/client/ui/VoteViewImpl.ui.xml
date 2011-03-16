@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+    <ui:style src="PollAppUi.css"/>
+
+    <g:VerticalPanel>
+        <g:HorizontalPanel>
+       <g:Label ui:field="lblPoll" addStyleNames="{style.heading}">Poll: </g:Label>
+            <g:Label ui:field="lblPollName" addStyleNames="{style.heading}"/>           
+        </g:HorizontalPanel>
+        <g:Label ui:field="lblVoterName"></g:Label>
+        <g:TextBox ui:field="tbxVoterName" styleName="{style.boxes}"></g:TextBox>
+        <g:FlexTable ui:field="tblOptionLists"/>
+        <g:Button ui:field="btnSave" styleName="{style.buttons}"></g:Button>
+    </g:VerticalPanel>
+
+</ui:UiBinder>

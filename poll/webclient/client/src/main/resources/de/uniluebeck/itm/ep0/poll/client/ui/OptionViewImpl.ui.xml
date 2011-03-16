@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
+             xmlns:p="urn:import:de.uniluebeck.itm.ep0.poll.client.ui.custom">
+
+    <ui:style src="PollAppUi.css" />
+
+    <g:VerticalPanel>
+        <g:Label ui:field="lblNumber" styleName="{style.headings}"></g:Label>
+        <g:Label ui:field="lblText" styleName="{style.labels}">Text:</g:Label>
+        <p:LocalizableTextBox ui:field="tbxText" styleName="{style.boxes}"/>
+        <g:Label ui:field="lblDate" styleName="{style.labels}">Date:</g:Label>
+        <d:DateBox ui:field="dbxDate" styleName="{style.boxes}"/>
+        <g:Label ui:field="lblDescription" styleName="{style.labels}">Description:</g:Label>
+        <p:LocalizableTextBox ui:field="tbxDescription" styleName="{style.largeboxes}"></p:LocalizableTextBox>
+    </g:VerticalPanel>
+</ui:UiBinder> 

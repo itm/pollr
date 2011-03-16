@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.uniluebeck.itm.ep0</groupId>
+        <artifactId>poll</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>de.uniluebeck.itm.ep0.poll</groupId>
+    <artifactId>webclient</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <name>EP0: Poll Engine WebClient</name>
+    <properties>
+        <gwt.version>2.1.1</gwt.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-servlet</artifactId>
+                <version>${gwt.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-user</artifactId>
+                <version>${gwt.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.gwt.inject</groupId>
+                <artifactId>gin</artifactId>
+                <version>1.0</version>
+            </dependency>               
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>gwt-maven-plugin</artifactId>
+                    <version>2.1.0-1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <modules>
+        <module>api</module>
+        <module>shared</module>
+        <module>server</module>
+        <module>client</module>
+    </modules>
+</project>

@@ -1,0 +1,1 @@
+E:\Lehre\2010_11\EIT-Praktikum\SVN\ep0\poll\webservice>mvn -Dtest=M2Assesment.java -DargLine=-DpollServiceURL=http://localhost:8080/poll -DpollLanguage=en_US test

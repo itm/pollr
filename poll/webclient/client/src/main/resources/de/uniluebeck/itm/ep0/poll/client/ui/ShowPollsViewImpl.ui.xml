@@ -1,0 +1,60 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
+	xmlns:p="urn:import:de.uniluebeck.itm.ep0.poll.client.ui.custom">
+	<ui:style src="PollAppUi.css" />
+
+	<g:HorizontalPanel>
+		<g:HTMLPanel>
+			<table>
+				<tr><g:Label ui:field="lblLocalPolls"></g:Label></tr>
+				<tr>
+					<td>
+						<g:FlexTable ui:field="tblLocalPolls" styleName="{style.pollsTable}" />
+					</td>
+				</tr>
+				<tr>
+					<td><g:Label ui:field="lblPollName"></g:Label></td>
+					<td><g:TextBox ui:field="tbxPollName"></g:TextBox></td>
+					<td>
+						<g:Button ui:field="btnLoadLocalPolls"></g:Button>
+					</td>
+					<td>
+						<g:Button ui:field="btnAddPoll" ></g:Button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p><g:Label ui:field="lblRemotePolls"></g:Label></p>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<g:FlexTable ui:field="tblRemotePolls" styleName="{style.pollsTable}" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label ui:field="lblRemoteURL"></g:Label>
+					</td>
+					<td>
+						<g:TextBox ui:field="tbxRemotePollsURL"></g:TextBox>
+					</td>
+					<td>
+						<g:Label ui:field="lblRemoteLanguageCode"></g:Label>
+					</td>
+					<td>
+						<g:TextBox ui:field="tbxRemoteLanguageCode"></g:TextBox>
+					</td>
+					<td>
+						<g:Button ui:field="btnLoadRemotePolls"></g:Button>
+					</td>
+				</tr>
+			</table>
+		</g:HTMLPanel>
+
+
+
+	</g:HorizontalPanel>
+
+</ui:UiBinder> 

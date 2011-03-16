@@ -1,0 +1,40 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
+             xmlns:p="urn:import:de.uniluebeck.itm.ep0.poll.client.ui.custom">
+
+   <ui:style src="PollAppUi.css" />
+   
+    <g:ScrollPanel>
+        <g:VerticalPanel>
+            <g:Label ui:field="lblNumber" addStyleNames="{style.headings}"></g:Label>
+            <g:HTMLPanel>
+                <table>
+                    <tr>
+                        <td>
+                            <g:Label ui:field="lblName" addStyleNames="{style.labels}">Name:</g:Label>
+                        </td>
+                        <td>
+                            <p:LocalizableTextBox ui:field="tbxName"/>
+                        </td>
+                    </tr>
+                </table>
+            </g:HTMLPanel>
+            <g:HorizontalPanel>
+                <g:RadioButton ui:field="rbnText" name="optionType"
+                               styleName="{style.radio}">
+                </g:RadioButton>
+                <g:RadioButton ui:field="rbnDate" name="optionType"
+                               styleName="{style.radio}">
+                </g:RadioButton>
+            </g:HorizontalPanel>
+            <g:Button ui:field="btnAddOption" styleName="{style.buttons}">Add Option</g:Button>
+            <g:DisclosurePanel ui:field="pnlDisclosure" animationEnabled="true" open="false">
+                <g:header>Options</g:header>
+                <g:FlexTable ui:field="tblOptions"></g:FlexTable>
+            </g:DisclosurePanel>
+        </g:VerticalPanel>
+    </g:ScrollPanel>
+
+</ui:UiBinder>

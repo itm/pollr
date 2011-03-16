@@ -1,0 +1,16 @@
+.default-border {
+    border: 5px #92c1f0 solid;
+}
+
+.error {
+    font: #FF0000 bold;
+}
+
+.celllist-entry {
+    padding: 4px 4px 4px 8px;
+    border-bottom: 1px solid #e3e8f3;
+}
+
+.default-border-new {
+    border: 1px #92c1f0 solid;
+}

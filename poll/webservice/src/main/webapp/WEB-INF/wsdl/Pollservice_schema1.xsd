@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="www.itm.uniluebeck.de/pollservice" xmlns:tns="www.itm.uniluebeck.de/pollservice" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Option" type="tns:xsOption"/>
+
+  <xs:element name="Poll" type="tns:xsPoll"/>
+
+  <xs:element name="PollInfo" type="tns:xsPollInfo"/>
+
+  <xs:element name="Vote" type="tns:xsVote"/>
+
+  <xs:element name="Votes" type="tns:xsVotes"/>
+
+  <xs:element name="getPoll" type="tns:getPoll"/>
+
+  <xs:element name="getPollResponse" type="tns:getPollResponse"/>
+
+  <xs:element name="getPolls" type="tns:getPolls"/>
+
+  <xs:element name="getPollsResponse" type="tns:getPollsResponse"/>
+
+  <xs:element name="voteForOptions" type="tns:voteForOptions"/>
+
+  <xs:element name="voteForOptionsResponse" type="tns:voteForOptionsResponse"/>
+
+  <xs:complexType name="voteForOptions">
+    <xs:sequence>
+      <xs:element name="voteForOptions" type="tns:xsVote" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="xsVote">
+    <xs:complexContent>
+      <xs:extension base="tns:xs">
+        <xs:sequence>
+          <xs:element name="OptionId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Voter" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="xs">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="voteForOptionsResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getPoll">
+    <xs:sequence>
+      <xs:element name="pollId" type="xs:string" minOccurs="0"/>
+      <xs:element name="languageCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPollResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:xsPoll" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="xsPoll">
+    <xs:complexContent>
+      <xs:extension base="tns:xs">
+        <xs:sequence>
+          <xs:element name="OptionList" type="tns:xsOptionList" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Title" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="xsOptionList">
+    <xs:complexContent>
+      <xs:extension base="tns:xs">
+        <xs:sequence>
+          <xs:element name="Option" type="tns:xsOption" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Title" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="xsOption">
+    <xs:complexContent>
+      <xs:extension base="tns:xs">
+        <xs:sequence>
+          <xs:element name="dateTime" type="xs:string" minOccurs="0"/>
+          <xs:element name="value" type="xs:string" minOccurs="0"/>
+          <xs:element name="votes" type="tns:xsVotes" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="xsVotes">
+    <xs:complexContent>
+      <xs:extension base="tns:xs">
+        <xs:sequence>
+          <xs:element name="Voter" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="getPolls">
+    <xs:sequence>
+      <xs:element name="languageCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPollsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:xsPollInfo" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="xsPollInfo">
+    <xs:complexContent>
+      <xs:extension base="tns:xs">
+        <xs:sequence>
+          <xs:element name="Title" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+
