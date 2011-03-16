@@ -30,7 +30,7 @@ public interface OptionListView extends BasicView<OptionListView.Presenter>, IsW
         /**
          * Reads the values from the UI-fields and creates a
          * {@link XoOptionList}.
-         * 
+         *
          * @return The {@link XoOptionList} with UI-field values.
          */
         XoOptionList getOptionList();

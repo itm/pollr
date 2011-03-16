@@ -40,6 +40,7 @@ public class MessageBox implements MessageBoxView.Presenter {
 
         void onButtonClicked(final Button button);
     }
+
     private static final UtilGinjector INJECTOR = GWT.create(UtilGinjector.class);
     private static final UtilClientBundle BUNDLE = GWT.create(UtilClientBundle.class);
     private final MessageBoxView view;

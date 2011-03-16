@@ -4,7 +4,7 @@
              xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
              xmlns:p="urn:import:de.uniluebeck.itm.ep0.poll.client.ui.custom">
 
-    <ui:style src="PollAppUi.css" />
+    <ui:style src="PollAppUi.css"/>
 
     <g:VerticalPanel>
         <g:Label ui:field="lblNumber" styleName="{style.headings}"></g:Label>

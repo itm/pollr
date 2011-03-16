@@ -20,9 +20,8 @@ public class ContentActivityMapper implements ActivityMapper {
     /**
      * AppActivityMapper associates each Place with its corresponding
      * {@link Activity}
-     * 
-     * @param injector
-     *            GIN injector to be passed to activities
+     *
+     * @param injector GIN injector to be passed to activities
      */
     @Inject
     public ContentActivityMapper(final PollAppGinjector injector) {
@@ -39,16 +38,14 @@ public class ContentActivityMapper implements ActivityMapper {
             final AddPollActivity activity = injector.getAddPollActivity();
             activity.setPlace((AddPollPlace) place);
             mappedActivity = activity;
-        }
-        else if (place instanceof ShowPollsPlace) {
+        } else if (place instanceof ShowPollsPlace) {
             final ShowPollsActivity activity = injector.getShowPollsActivity();
             activity.setPlace((ShowPollsPlace) place);
             mappedActivity = activity;
-        }
-        else if (place instanceof VotePlace) {
+        } else if (place instanceof VotePlace) {
             final VoteActivity activity = injector.getVoteActivity();
             activity.setPlace((VotePlace) place);
-            mappedActivity = activity;            
+            mappedActivity = activity;
         }
         return mappedActivity;
     }

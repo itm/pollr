@@ -22,8 +22,8 @@ public class ShowPollsPresenter implements ShowPollsView.Presenter,
 
     @Inject
     public ShowPollsPresenter(final PlaceController placeController,
-            final PollClientServiceAsync service, final ShowPollsView view,
-            final EventBus eventBus) {
+                              final PollClientServiceAsync service, final ShowPollsView view,
+                              final EventBus eventBus) {
         this.placeConroller = placeController;
         this.service = service;
         this.view = view;
@@ -84,6 +84,6 @@ public class ShowPollsPresenter implements ShowPollsView.Presenter,
             }
         };
         //service.findPollInfos(name, callback);
-       
+
     }
 }

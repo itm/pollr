@@ -66,8 +66,8 @@ public class LocalizePresenter implements BasicPresenter<LocalizableTextBox> {
 
     @Inject
     public LocalizePresenter(final LocalizableTextBox view,
-            final LocalizePopUp popUp, final PollClientServiceAsync service,
-            final EventBus eventBus) {
+                             final LocalizePopUp popUp, final PollClientServiceAsync service,
+                             final EventBus eventBus) {
         this.view = view;
         this.popUp = popUp;
         this.service = service;
@@ -192,7 +192,7 @@ public class LocalizePresenter implements BasicPresenter<LocalizableTextBox> {
     }
 
     public void fillLanguagesBoxSync(final ListBox box,
-            final String selectedValue) {
+                                     final String selectedValue) {
         for (int j = 0; j < langSorted.length; j++) {
             box.insertItem(langSorted[j], j);
             if (null != selectedValue) {

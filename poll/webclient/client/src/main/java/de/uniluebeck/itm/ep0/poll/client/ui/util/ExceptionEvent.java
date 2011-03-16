@@ -9,6 +9,7 @@ public class ExceptionEvent extends GwtEvent<ExceptionEvent.ExceptionHandler> {
 
         void onException(ExceptionEvent event);
     }
+
     public static final Type<ExceptionHandler> TYPE = new Type<ExceptionHandler>();
     private final String message;
     private final String stacktrace;

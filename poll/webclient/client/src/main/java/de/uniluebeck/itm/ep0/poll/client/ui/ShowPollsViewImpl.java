@@ -28,7 +28,7 @@ public class ShowPollsViewImpl extends Composite implements ShowPollsView {
             .create(ShowPollsViewImplUiBinder.class);
 
     private static PollClientConstants pollClientConstants = GWT.create(PollClientConstants.class);
-    
+
     interface ShowPollsViewImplUiBinder extends
             UiBinder<Widget, ShowPollsViewImpl> {
     }
@@ -87,8 +87,8 @@ public class ShowPollsViewImpl extends Composite implements ShowPollsView {
 
         if (Boolean.TRUE.equals(pollInfos.getIsRemote())) {
             pollTable = tblRemotePolls;
-            remoteURL = remoteURL+pollInfos.getRemotePollSystemURL();
-            remoteLanguageCode = remoteLanguageCode+pollInfos.getRemoteLanguageCode();
+            remoteURL = remoteURL + pollInfos.getRemotePollSystemURL();
+            remoteLanguageCode = remoteLanguageCode + pollInfos.getRemoteLanguageCode();
         } else {
             pollTable = tblLocalPolls;
         }
@@ -106,7 +106,7 @@ public class ShowPollsViewImpl extends Composite implements ShowPollsView {
                     new Label(xoPollInfo.getName().getLocalizedValue(
                             LocaleInfo.getCurrentLocale().getLocaleName())));
             pollTable.setWidget(rowNum, 1, new Hyperlink(caption,
-                    "VotePlace:" + "pollUuid="+xoPollInfo.getUuid() + remoteURL
+                    "VotePlace:" + "pollUuid=" + xoPollInfo.getUuid() + remoteURL
                             + remoteLanguageCode));
         }
     }
@@ -127,16 +127,15 @@ public class ShowPollsViewImpl extends Composite implements ShowPollsView {
 
     @UiHandler("btnLoadLocalPolls")
     void onClickLoadLocalPolls(final ClickEvent e) {
-        if(PollUtil.nullOrEmpty(tbxPollName.getText())){
-        presenter.loadPolls("", LocaleInfo.getCurrentLocale().getLocaleName());
-        }
-        else{
+        if (PollUtil.nullOrEmpty(tbxPollName.getText())) {
+            presenter.loadPolls("", LocaleInfo.getCurrentLocale().getLocaleName());
+        } else {
             presenter.searchPolls(tbxPollName.getText());
         }
     }
 
     @UiHandler("btnLoadRemotePolls")
     void onClickLoadRemotePolls(final ClickEvent e) {
-       presenter.loadPolls(tbxRemotePollsURL.getValue(), tbxRemoteLanguageCode.getValue());
+        presenter.loadPolls(tbxRemotePollsURL.getValue(), tbxRemoteLanguageCode.getValue());
     }
 }

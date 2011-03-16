@@ -33,9 +33,9 @@ public interface PollAppGinjector extends Ginjector {
     ContentActivityManager getContentActivityManager();
 
     AddPollActivity getAddPollActivity();
-    
+
     ShowPollsActivity getShowPollsActivity();
-    
+
     VoteActivity getVoteActivity();
 
 
@@ -45,33 +45,33 @@ public interface PollAppGinjector extends Ginjector {
     PlaceHistoryHandler getPlaceHistoryHandler();
 
     PlaceController getPlaceController();
-    
+
 
     /* 
-     * Views 
-     */
+    * Views
+    */
     PollAppView getPollAppView();
 
-    AddPollView getAddPollView();    
-    
+    AddPollView getAddPollView();
+
     ShowPollsView getShowPollsView();
-    
+
     VoteView getVoteView();
-    
+
     /*
-     * Presenter
-     */
+    * Presenter
+    */
     AddPollPresenter getAddPollPresenter();
-    
+
     OptionListPresenter getOptionListPresenter();
-    
+
     OptionPresenter getOptionPresenter();
-    
+
     ShowPollsPresenter getShowPollsPresenter();
-    
+
     LocalizePresenter getLocalizePresenter();
-    
+
     VotePresenter getVotePresenter();
-    
+
     VoteOptionListPresenter getVoteOptionListPresenter();
 }

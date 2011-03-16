@@ -23,7 +23,7 @@ public class PollWebServiceTest {
         TestDataHelper.createAndAddPoll(SERVICE);
 
 
-    PollWebserviceClient pc = new PollWebserviceClient();
+        PollWebserviceClient pc = new PollWebserviceClient();
         PollWebService ws = pc.getPollWebServicePort();
 
         log.info(ws.getPolls("en_US").toString());

@@ -1,4 +1,3 @@
-
 package de.uniluebeck.itm.ep0.poll.web.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getPoll complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType name="getPoll">
  *   &lt;complexContent>
@@ -23,13 +22,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getPoll", propOrder = {
-    "pollId",
-    "languageCode"
+        "pollId",
+        "languageCode"
 })
 public class GetPoll {
 
@@ -38,11 +35,9 @@ public class GetPoll {
 
     /**
      * Gets the value of the pollId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     *         {@link String }
      */
     public String getPollId() {
         return pollId;
@@ -50,11 +45,9 @@ public class GetPoll {
 
     /**
      * Sets the value of the pollId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPollId(String value) {
         this.pollId = value;
@@ -62,11 +55,9 @@ public class GetPoll {
 
     /**
      * Gets the value of the languageCode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     *         {@link String }
      */
     public String getLanguageCode() {
         return languageCode;
@@ -74,11 +65,9 @@ public class GetPoll {
 
     /**
      * Sets the value of the languageCode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setLanguageCode(String value) {
         this.languageCode = value;

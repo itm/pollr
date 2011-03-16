@@ -2,8 +2,8 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
-    <ui:style src="../PollAppUi.css" />    
-    
+    <ui:style src="../PollAppUi.css"/>
+
     <g:DialogBox ui:field="dialogBox" text="Failure Notification" animationEnabled="true" modal="true"
                  glassEnabled="true">
         <g:VerticalPanel>

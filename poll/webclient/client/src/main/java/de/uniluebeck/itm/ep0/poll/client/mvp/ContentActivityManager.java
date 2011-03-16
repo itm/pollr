@@ -8,7 +8,7 @@ public class ContentActivityManager extends ActivityManager {
 
     @Inject
     public ContentActivityManager(final ContentActivityMapper mapper,
-            final EventBus eventBus) {
+                                  final EventBus eventBus) {
         super(mapper, eventBus);
     }
 }

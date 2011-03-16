@@ -21,75 +21,75 @@ import de.uniluebeck.itm.ep0.poll.client.i18n.PollClientConstants;
 
 public class PollAppViewImpl extends Composite implements PollAppView {
 
-	interface PollAppViewImplUiBinder extends UiBinder<Widget, PollAppViewImpl> {
-	}
+    interface PollAppViewImplUiBinder extends UiBinder<Widget, PollAppViewImpl> {
+    }
 
-	private static PollAppViewImplUiBinder uiBinder = GWT
-			.create(PollAppViewImplUiBinder.class);
-	private static PollClientConstants pollClientConstants = GWT.create(PollClientConstants.class);
-	@UiField
-	HTMLPanel pnlHeader;
-	@UiField
-	SimplePanel pnlMain;
-	@UiField
-	ListBox lbLanguages;
-	@UiField
-	Label lblLanguages;
-	
-	public PollAppViewImpl() {
-		initWidget(uiBinder.createAndBindUi(this));
-		lblLanguages.setText(pollClientConstants.selectLanguage());
-		initializeLocaleBox();
-		setWidth("100%");
-		setHeight("100%");
-	}
+    private static PollAppViewImplUiBinder uiBinder = GWT
+            .create(PollAppViewImplUiBinder.class);
+    private static PollClientConstants pollClientConstants = GWT.create(PollClientConstants.class);
+    @UiField
+    HTMLPanel pnlHeader;
+    @UiField
+    SimplePanel pnlMain;
+    @UiField
+    ListBox lbLanguages;
+    @UiField
+    Label lblLanguages;
 
-	private void initializeLocaleBox() {
-		String currentLocale = LocaleInfo.getCurrentLocale().getLocaleName();
-		if (currentLocale.equals("default")) {
-			currentLocale = "en";
-		}
-		String[] localeNames = LocaleInfo.getAvailableLocaleNames();
-		for (String localeName : localeNames) {
-			if (!localeName.equals("default")) {
-				String nativeName = LocaleInfo
-						.getLocaleNativeDisplayName(localeName);
-				lbLanguages.addItem(nativeName, localeName);
-				if (localeName.equals(currentLocale)) {
-					lbLanguages
-							.setSelectedIndex(lbLanguages.getItemCount() - 1);
-				}
-			}
-		}
-		lbLanguages.addChangeHandler(new ChangeHandler() {
-			public void onChange(ChangeEvent event) {
-				String localeName = lbLanguages.getValue(lbLanguages
-						.getSelectedIndex());
-				UrlBuilder builder = Location.createUrlBuilder().setParameter(
-						"locale", localeName);
-				Window.Location.replace(builder.buildString());
-			}
-		});
-	}
+    public PollAppViewImpl() {
+        initWidget(uiBinder.createAndBindUi(this));
+        lblLanguages.setText(pollClientConstants.selectLanguage());
+        initializeLocaleBox();
+        setWidth("100%");
+        setHeight("100%");
+    }
 
-	public ListBox getLbLanguages() {
-		return lbLanguages;
-	}
+    private void initializeLocaleBox() {
+        String currentLocale = LocaleInfo.getCurrentLocale().getLocaleName();
+        if (currentLocale.equals("default")) {
+            currentLocale = "en";
+        }
+        String[] localeNames = LocaleInfo.getAvailableLocaleNames();
+        for (String localeName : localeNames) {
+            if (!localeName.equals("default")) {
+                String nativeName = LocaleInfo
+                        .getLocaleNativeDisplayName(localeName);
+                lbLanguages.addItem(nativeName, localeName);
+                if (localeName.equals(currentLocale)) {
+                    lbLanguages
+                            .setSelectedIndex(lbLanguages.getItemCount() - 1);
+                }
+            }
+        }
+        lbLanguages.addChangeHandler(new ChangeHandler() {
+            public void onChange(ChangeEvent event) {
+                String localeName = lbLanguages.getValue(lbLanguages
+                        .getSelectedIndex());
+                UrlBuilder builder = Location.createUrlBuilder().setParameter(
+                        "locale", localeName);
+                Window.Location.replace(builder.buildString());
+            }
+        });
+    }
 
-	public Label getLblLanguages() {
-		return lblLanguages;
-	}
+    public ListBox getLbLanguages() {
+        return lbLanguages;
+    }
 
-	public HTMLPanel getHeaderPanel() {
-		return pnlHeader;
-	}
+    public Label getLblLanguages() {
+        return lblLanguages;
+    }
 
-	public AcceptsOneWidget getMainPanel() {
-		return pnlMain;
-	}
+    public HTMLPanel getHeaderPanel() {
+        return pnlHeader;
+    }
 
-	@Override
-	public Widget asWidget() {
-		return this;
-	}
+    public AcceptsOneWidget getMainPanel() {
+        return pnlMain;
+    }
+
+    @Override
+    public Widget asWidget() {
+        return this;
+    }
 }

@@ -25,7 +25,7 @@ public class AddPollActivity extends AbstractActivity {
     public void setPlace(final AddPollPlace place) {
         this.place = place;
     }
-    
+
     @Override
     public String mayStop() {
         return "Warning: Unsaved changes will be lost if you leave this page.";

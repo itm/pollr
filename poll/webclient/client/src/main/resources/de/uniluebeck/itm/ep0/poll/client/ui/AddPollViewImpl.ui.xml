@@ -2,15 +2,15 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
-              xmlns:p="urn:import:de.uniluebeck.itm.ep0.poll.client.ui.custom">
+             xmlns:p="urn:import:de.uniluebeck.itm.ep0.poll.client.ui.custom">
 
-   <ui:style src="PollAppUi.css" />
+    <ui:style src="PollAppUi.css"/>
 
     <g:DockLayoutPanel unit='EM'>
         <g:north size="3">
-            
+
             <g:Label ui:field="lblCreatePoll" styleName="{style.headings}"></g:Label>
-            
+
         </g:north>
         <g:center>
             <g:ScrollPanel styleName="{style.centered}">
@@ -18,16 +18,29 @@
                     <g:HTMLPanel>
                         <table>
                             <tr>
-                                <td><g:Label ui:field="lblName" styleName="{style.labels}"></g:Label></td>
-                                <td><p:LocalizableTextBox ui:field="tbxName" styleName="{style.boxes}"></p:LocalizableTextBox></td>
+                                <td>
+                                    <g:Label ui:field="lblName" styleName="{style.labels}"></g:Label>
+                                </td>
+                                <td>
+                                    <p:LocalizableTextBox ui:field="tbxName"
+                                                          styleName="{style.boxes}"></p:LocalizableTextBox>
+                                </td>
                             </tr>
                             <tr>
-                                <td><g:Label ui:field="lblValidFrom" styleName="{style.labels}"></g:Label></td>
-                                <td><d:DateBox ui:field="dbxValidFrom" styleName="{style.boxes}"></d:DateBox></td>
+                                <td>
+                                    <g:Label ui:field="lblValidFrom" styleName="{style.labels}"></g:Label>
+                                </td>
+                                <td>
+                                    <d:DateBox ui:field="dbxValidFrom" styleName="{style.boxes}"></d:DateBox>
+                                </td>
                             </tr>
                             <tr>
-                                <td><g:Label ui:field="lblValidTo" styleName="{style.labels}"></g:Label></td>
-                                <td><d:DateBox ui:field="dbxValidTo" styleName="{style.boxes}"></d:DateBox></td>
+                                <td>
+                                    <g:Label ui:field="lblValidTo" styleName="{style.labels}"></g:Label>
+                                </td>
+                                <td>
+                                    <d:DateBox ui:field="dbxValidTo" styleName="{style.boxes}"></d:DateBox>
+                                </td>
                             </tr>
                         </table>
                     </g:HTMLPanel>

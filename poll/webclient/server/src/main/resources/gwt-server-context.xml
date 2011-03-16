@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="pollService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi://localhost:1199/PollPersistenceService" />
+        <property name="serviceUrl" value="rmi://localhost:1199/PollPersistenceService"/>
         <property name="serviceInterface"
-			value="de.uniluebeck.itm.ep0.poll.service.PollService" />
-			<property name="refreshStubOnConnectFailure" value="true" />
-			
+                  value="de.uniluebeck.itm.ep0.poll.service.PollService"/>
+        <property name="refreshStubOnConnectFailure" value="true"/>
+
     </bean>
-    
+
     <!--bean class="de.uniluebeck.itm.ep0.poll.server.PollClientServiceImpl">
         <property name="pollService" ref="pollService" />
     </bean-->

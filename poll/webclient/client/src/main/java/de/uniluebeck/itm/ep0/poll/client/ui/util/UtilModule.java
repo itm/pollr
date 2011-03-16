@@ -5,10 +5,10 @@ import com.google.inject.Singleton;
 
 public class UtilModule extends AbstractGinModule {
 
-	@Override
-	protected void configure() {
-		bind(MessageBoxView.class).to(MessageBoxViewImpl.class).in(Singleton.class);
-		bind(MessageBox.class);
-	}
+    @Override
+    protected void configure() {
+        bind(MessageBoxView.class).to(MessageBoxViewImpl.class).in(Singleton.class);
+        bind(MessageBox.class);
+    }
 
 }

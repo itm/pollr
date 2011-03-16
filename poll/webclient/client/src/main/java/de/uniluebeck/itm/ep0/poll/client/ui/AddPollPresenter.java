@@ -26,9 +26,9 @@ public class AddPollPresenter implements AddPollView.Presenter, ExceptionEvent.E
 
     @Inject
     public AddPollPresenter(final AddPollView view,
-            final PollClientServiceAsync service,
-            final EventBus eventBus,
-            final PlaceController placeController) {
+                            final PollClientServiceAsync service,
+                            final EventBus eventBus,
+                            final PlaceController placeController) {
         this.view = view;
         this.service = service;
         this.eventBus = eventBus;
@@ -68,7 +68,7 @@ public class AddPollPresenter implements AddPollView.Presenter, ExceptionEvent.E
 
     public void addPoll() {
         // Set up the callback object.
-        final AsyncCallback<XoPoll> callback = new AsyncCallback<XoPoll>()  {
+        final AsyncCallback<XoPoll> callback = new AsyncCallback<XoPoll>() {
 
             public void onFailure(final Throwable caught) {
                 eventBus.fireEvent(new ExceptionEvent(caught.getMessage(), StacktraceUtil.stacktraceToString(caught)));
@@ -88,8 +88,8 @@ public class AddPollPresenter implements AddPollView.Presenter, ExceptionEvent.E
 
     public void goToShowPolls() {
         placeController.goTo(new ShowPollsPlace());
-    }    
-    
+    }
+
     public void onException(final ExceptionEvent event) {
         final String title = "Error while loading languages";
         final String message = event.getMessage();

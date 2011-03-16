@@ -38,24 +38,24 @@ public class OptionViewImpl extends Composite implements OptionView {
     LocalizableTextBox tbxDescription;
     @UiField
     Label lblDescription;
-    
-    
+
+
     private PollAppGinjector injector;
     private Presenter presenter;
 
     @Inject
     public OptionViewImpl(final PollAppGinjector injector) {
         this.injector = injector;
-        
+
         initPresenter();
-        
+
         initWidget(uiBinder.createAndBindUi(this));
 
         setWidth("100%");
         setHeight("100%");
 
         // Default option type
-        setOptionType(PollApp.OptionType.TEXT); 
+        setOptionType(PollApp.OptionType.TEXT);
         localize();
     }
 
@@ -67,12 +67,12 @@ public class OptionViewImpl extends Composite implements OptionView {
 
     private void initPresenter() {
         final LocalizePresenter textBoxPresenter = injector.getLocalizePresenter();
-        this.tbxText = textBoxPresenter.getView();        
-        
+        this.tbxText = textBoxPresenter.getView();
+
         final LocalizePresenter descriptionBoxPresenter = injector.getLocalizePresenter();
-        this.tbxDescription = descriptionBoxPresenter.getView();               
-    }    
-    
+        this.tbxDescription = descriptionBoxPresenter.getView();
+    }
+
     public void setNumber(final int number) {
         lblNumber.setText("Option #" + number);
     }

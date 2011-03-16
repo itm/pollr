@@ -11,7 +11,7 @@ public interface ShowPollsView extends BasicView<ShowPollsPresenter>, IsWidget {
     void setPresenter(ShowPollsPresenter presenter);
 
     public interface Presenter extends BasicPresenter<ShowPollsView> {
-        
+
         void loadPolls(String url, String languageCode);
     }
 }

@@ -23,6 +23,7 @@ public class LocalizableTextBox extends Composite implements
     interface LocalizeableTextBoxUiBinder extends
             UiBinder<Widget, LocalizableTextBox> {
     }
+
     private static LocalizeableTextBoxUiBinder uiBinder = GWT.create(LocalizeableTextBoxUiBinder.class);
     @UiField
     PushButton btnLocalize;
@@ -86,7 +87,7 @@ public class LocalizableTextBox extends Composite implements
     @UiHandler("btnLocalize")
     public void handleLocalizeClick(final ClickEvent e) {
         presenter.getLanguages();
-        
+
         presenter.showPopUp();
     }
 

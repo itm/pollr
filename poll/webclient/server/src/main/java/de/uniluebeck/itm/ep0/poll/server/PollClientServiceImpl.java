@@ -103,7 +103,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public XoPoll getPoll(final String uuid, final String remoteURL,
-            final String remoteLanguageCode) throws RemotePollException {
+                          final String remoteLanguageCode) throws RemotePollException {
         LOG.info("getPoll(uuid: " + uuid + " remoteURL: " + remoteURL
                 + " remoteLanugageCode: " + remoteLanguageCode + " ) called");
         XoPoll poll;
@@ -149,7 +149,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
 
     @Override
     public LoadPollsResult getPollInfos(final String url,
-            final String languageCode) throws RemotePollException {
+                                        final String languageCode) throws RemotePollException {
         LOG.info("getPollInfos() called");
         LoadPollsResult result;
         if (null != url && !"".equals(url)) {
@@ -227,7 +227,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
     }
 
     private LoadPollsResult fetchRemotePollInfos(final String url,
-            final String languageCode) throws RemotePollException {
+                                                 final String languageCode) throws RemotePollException {
 
         final PollWebService ws = getPollWebService(url);
 
@@ -248,7 +248,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
     private PollWebService getPollWebService(final String url)
             throws RemotePollException {
         Assert.notNull(url, "missing required pollServiceURL");
-        LOG.info("getPollWebService called with url:"+url);
+        LOG.info("getPollWebService called with url:" + url);
         PollWebserviceClient pc;
         try {
             pc = new PollWebserviceClient(new URL(url), qName);
@@ -265,7 +265,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
      * Returns a Map containing localized names of Languages as keys and the
      * corresponding Locale code as value and vice versa. Example: <English, en>
      * <en, English>
-     * 
+     *
      * @return Map<Language, LocalCode>
      */
     @Override
@@ -302,20 +302,20 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
     public void voteRemote(final String url, final XoVote vote)
             throws RemotePollException {
         PollWebserviceClient pc;
-            final PollWebService ws = getPollWebService(url);
-            // TODO change signature to list, call web service with list of
-            // XoVote
-            ws.voteForOptions(XoXsMapper.XoVote2XsVote(vote));
+        final PollWebService ws = getPollWebService(url);
+        // TODO change signature to list, call web service with list of
+        // XoVote
+        ws.voteForOptions(XoXsMapper.XoVote2XsVote(vote));
     }
 
     // TODO FMA
     private XoPoll getRemotePoll(String uuid, String url, String languageCode)
             throws RemotePollException {
         PollWebserviceClient pc;
-            final PollWebService ws = getPollWebService(url);
-            // TODO FMA: add votes
-            XoPollWithVotes result = XoXsMapper.xsPoll2xoPoll(
-                    ws.getPoll(uuid, languageCode), languageCode);
-            return result.getPoll();
+        final PollWebService ws = getPollWebService(url);
+        // TODO FMA: add votes
+        XoPollWithVotes result = XoXsMapper.xsPoll2xoPoll(
+                ws.getPoll(uuid, languageCode), languageCode);
+        return result.getPoll();
     }
 }

@@ -17,7 +17,7 @@ public class VoteViewImpl extends Composite implements VoteView {
 
     private static VoteViewImplUiBinder uiBinder = GWT.create(VoteViewImplUiBinder.class);
     private static PollClientConstants pollClientConstants = GWT.create(PollClientConstants.class);
-    
+
     @UiField
     Label lblPollName;
     @UiField
@@ -41,14 +41,14 @@ public class VoteViewImpl extends Composite implements VoteView {
         initWidget(uiBinder.createAndBindUi(this));
 
         localize();
-        
+
     }
 
     private void localize() {
         lblVoterName.setText(pollClientConstants.yourName());
         lblPoll.setText(pollClientConstants.poll());
         btnSave.setText(pollClientConstants.done());
-        
+
     }
 
     public void addOptionListView(final VoteOptionListView voteOptionListView) {

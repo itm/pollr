@@ -1,4 +1,3 @@
-
 package de.uniluebeck.itm.ep0.poll.web.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,9 +9,9 @@ import de.uniluebeck.itm.ep0.poll.web.XsVote;
 
 /**
  * <p>Java class for voteForOptions complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType name="voteForOptions">
  *   &lt;complexContent>
@@ -24,12 +23,10 @@ import de.uniluebeck.itm.ep0.poll.web.XsVote;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "voteForOptions", propOrder = {
-    "voteForOptions"
+        "voteForOptions"
 })
 public class VoteForOptions {
 
@@ -37,11 +34,9 @@ public class VoteForOptions {
 
     /**
      * Gets the value of the voteForOptions property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XsVote }
-     *     
+     *
+     * @return possible object is
+     *         {@link XsVote }
      */
     public XsVote getVoteForOptions() {
         return voteForOptions;
@@ -49,11 +44,9 @@ public class VoteForOptions {
 
     /**
      * Sets the value of the voteForOptions property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XsVote }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XsVote }
      */
     public void setVoteForOptions(XsVote value) {
         this.voteForOptions = value;

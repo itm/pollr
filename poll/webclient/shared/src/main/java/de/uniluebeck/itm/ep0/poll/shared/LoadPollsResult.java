@@ -8,7 +8,7 @@ import de.uniluebeck.itm.ep0.poll.domain.XoPollInfo;
 public class LoadPollsResult implements Serializable {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 4768928141451553239L;
 
@@ -48,5 +48,5 @@ public class LoadPollsResult implements Serializable {
     public String getRemoteLanguageCode() {
         return remoteLanguageCode;
     }
-    
+
 }

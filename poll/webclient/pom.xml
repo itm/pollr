@@ -33,7 +33,7 @@
                 <groupId>com.googlecode.gwt.inject</groupId>
                 <artifactId>gin</artifactId>
                 <version>1.0</version>
-            </dependency>               
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

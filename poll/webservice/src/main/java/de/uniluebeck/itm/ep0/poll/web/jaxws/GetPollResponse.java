@@ -1,4 +1,3 @@
-
 package de.uniluebeck.itm.ep0.poll.web.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,9 +10,9 @@ import de.uniluebeck.itm.ep0.poll.web.XsPoll;
 
 /**
  * <p>Java class for getPollResponse complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType name="getPollResponse">
  *   &lt;complexContent>
@@ -25,12 +24,10 @@ import de.uniluebeck.itm.ep0.poll.web.XsPoll;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getPollResponse", propOrder = {
-    "_return"
+        "_return"
 })
 public class GetPollResponse {
 
@@ -39,11 +36,9 @@ public class GetPollResponse {
 
     /**
      * Gets the value of the return property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XsPoll }
-     *     
+     *
+     * @return possible object is
+     *         {@link XsPoll }
      */
     public XsPoll getReturn() {
         return _return;
@@ -51,11 +46,9 @@ public class GetPollResponse {
 
     /**
      * Sets the value of the return property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XsPoll }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XsPoll }
      */
     public void setReturn(XsPoll value) {
         this._return = value;

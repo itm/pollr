@@ -94,7 +94,7 @@ public class VoteOptionListPresenter implements VoteOptionListView.Presenter {
                         getLocalizedValue(LocaleInfo.getCurrentLocale().getLocaleName()));
             } else if (option instanceof XoDateOption) {
                 Date d = ((XoDateOption) option).getDateOption();
-                DateTimeFormat df =DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM);
+                DateTimeFormat df = DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM);
                 lblOptionName = new Label(df.format(d));
             }
             view.setVoteTableWidget(currentRow, currentCell++, lblOptionName);

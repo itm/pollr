@@ -1,4 +1,3 @@
-
 package de.uniluebeck.itm.ep0.poll.web.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for getPolls complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType name="getPolls">
  *   &lt;complexContent>
@@ -22,12 +21,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getPolls", propOrder = {
-    "languageCode"
+        "languageCode"
 })
 public class GetPolls {
 
@@ -35,11 +32,9 @@ public class GetPolls {
 
     /**
      * Gets the value of the languageCode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     *         {@link String }
      */
     public String getLanguageCode() {
         return languageCode;
@@ -47,11 +42,9 @@ public class GetPolls {
 
     /**
      * Sets the value of the languageCode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setLanguageCode(String value) {
         this.languageCode = value;

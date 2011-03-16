@@ -105,25 +105,26 @@
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.2</version>
                 </plugin>
- <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.6</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>eu.wisebed.wiseui</groupId>
-                        <artifactId>build-tools</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <configLocation>build-tools/src/main/resources/wiseui/checkstyle.xml</configLocation>
-                    <suppressionsLocation>build-tools/src/main/resources/wiseui/suppressions.xml</suppressionsLocation>
-                    <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
-                    <headerLocation>LICENSE.txt</headerLocation>
-                </configuration>
-            </plugin>
-                
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>2.6</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>eu.wisebed.wiseui</groupId>
+                            <artifactId>build-tools</artifactId>
+                            <version>${project.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <configLocation>build-tools/src/main/resources/wiseui/checkstyle.xml</configLocation>
+                        <suppressionsLocation>build-tools/src/main/resources/wiseui/suppressions.xml
+                        </suppressionsLocation>
+                        <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+                        <headerLocation>LICENSE.txt</headerLocation>
+                    </configuration>
+                </plugin>
+
             </plugins>
         </pluginManagement>
     </build>

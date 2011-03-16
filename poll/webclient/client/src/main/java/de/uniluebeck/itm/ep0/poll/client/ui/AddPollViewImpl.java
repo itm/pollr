@@ -30,11 +30,12 @@ public class AddPollViewImpl extends Composite implements AddPollView {
 
     private static final int CELL_SPACING = 5;
     private static final int CELL_PADDING = 3;
-    
+
     private static PollClientConstants pollClientConstants = GWT.create(PollClientConstants.class);
 
     interface AddPollViewImplUiBinder extends UiBinder<Widget, AddPollViewImpl> {
     }
+
     private static AddPollViewImplUiBinder uiBinder = GWT.create(AddPollViewImplUiBinder.class);
     @UiField
     VerticalPanel pnlMain;
@@ -64,10 +65,8 @@ public class AddPollViewImpl extends Composite implements AddPollView {
     Label lblValidFrom;
     @UiField
     Label lblValidTo;
-  
-    
-    
-    
+
+
     private PollAppGinjector injector;
     private Presenter presenter;
 
@@ -89,14 +88,14 @@ public class AddPollViewImpl extends Composite implements AddPollView {
     }
 
     private void localize() {
-       lblCreatePoll.setText(pollClientConstants.createPoll());
-       lblName.setText(pollClientConstants.name());
-       lblValidFrom.setText(pollClientConstants.validFrom());
-       lblValidTo.setText(pollClientConstants.validTo());
-       cbxIsPublic.setText(pollClientConstants.isPublic());
-       btnAddOptionList.setText(pollClientConstants.addOptionList());
-       btnCreatePoll.setText(pollClientConstants.savePoll());
-       pnlDisclosure.setTitle(pollClientConstants.optionLists());
+        lblCreatePoll.setText(pollClientConstants.createPoll());
+        lblName.setText(pollClientConstants.name());
+        lblValidFrom.setText(pollClientConstants.validFrom());
+        lblValidTo.setText(pollClientConstants.validTo());
+        cbxIsPublic.setText(pollClientConstants.isPublic());
+        btnAddOptionList.setText(pollClientConstants.addOptionList());
+        btnCreatePoll.setText(pollClientConstants.savePoll());
+        pnlDisclosure.setTitle(pollClientConstants.optionLists());
     }
 
     private void initLocalizableTextBoxPresenter() {

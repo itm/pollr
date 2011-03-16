@@ -15,7 +15,7 @@ public class VotePlace extends Place {
     }
 
     public VotePlace(final String uuid, final String remoteURL,
-            final String remoteLanguageCode) {
+                     final String remoteLanguageCode) {
         this.uuid = uuid;
         this.remoteURL = remoteURL;
         this.remoteLanguageCode = remoteLanguageCode;

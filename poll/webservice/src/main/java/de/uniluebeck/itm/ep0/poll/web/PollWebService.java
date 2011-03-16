@@ -15,7 +15,7 @@ public interface PollWebService {
 
     @WebMethod
     public abstract XsPoll getPoll(@WebParam(name = "pollId") String pollId,
-            @WebParam(name = "languageCode") String languageCode);
+                                   @WebParam(name = "languageCode") String languageCode);
 
     @WebMethod
     public abstract void voteForOptions(

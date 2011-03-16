@@ -18,9 +18,10 @@ public class LocalizePopUp implements BasicView<LocalizePresenter> {
 
     interface LocalizePopUpUiBinder extends UiBinder<Widget, LocalizePopUp> {
     }
+
     private static LocalizePopUpUiBinder uiBinder = GWT.create(LocalizePopUpUiBinder.class);
     private static PollClientConstants pollClientConstants = GWT.create(PollClientConstants.class);
-    
+
     @UiField
     DecoratedPopupPanel dbxPopup;
     @UiField
@@ -43,9 +44,9 @@ public class LocalizePopUp implements BasicView<LocalizePresenter> {
     }
 
     private void localize() {
-       btnAdd.setText(pollClientConstants.newLocalization());
-       btnDone.setText(pollClientConstants.done());
-        
+        btnAdd.setText(pollClientConstants.newLocalization());
+        btnDone.setText(pollClientConstants.done());
+
     }
 
     public FlexTable getLanguageTable() {
@@ -59,8 +60,8 @@ public class LocalizePopUp implements BasicView<LocalizePresenter> {
 
     public void setPosition(final int x, final int y) {
         dbxPopup.setPopupPosition(x, y);
-    }    
-    
+    }
+
     @UiHandler("btnAdd")
     public void handleAddClick(final ClickEvent e) {
         presenter.addRow();

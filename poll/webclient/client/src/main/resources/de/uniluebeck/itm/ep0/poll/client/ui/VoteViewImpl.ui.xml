@@ -6,8 +6,8 @@
 
     <g:VerticalPanel>
         <g:HorizontalPanel>
-       <g:Label ui:field="lblPoll" addStyleNames="{style.heading}">Poll: </g:Label>
-            <g:Label ui:field="lblPollName" addStyleNames="{style.heading}"/>           
+            <g:Label ui:field="lblPoll" addStyleNames="{style.heading}">Poll:</g:Label>
+            <g:Label ui:field="lblPollName" addStyleNames="{style.heading}"/>
         </g:HorizontalPanel>
         <g:Label ui:field="lblVoterName"></g:Label>
         <g:TextBox ui:field="tbxVoterName" styleName="{style.boxes}"></g:TextBox>

@@ -29,7 +29,7 @@ public interface AddPollView extends BasicView<AddPollView.Presenter>, IsWidget 
 
         /**
          * Reads the values from the UI-fields and creates a {@link XoPoll}.
-         * 
+         *
          * @return The {@link XoPoll} with UI-field values.
          */
         XoPoll getPoll();

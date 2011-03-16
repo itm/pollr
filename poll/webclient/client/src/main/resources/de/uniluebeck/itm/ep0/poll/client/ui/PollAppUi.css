@@ -28,7 +28,7 @@
     height: 24px;
     margin-left: -3px;
     margin-bottom: -3px;
-    background-color:inactiveborder;
+    background-color: inactiveborder;
 }
 
 .buttons {
@@ -96,6 +96,7 @@
 .button {
     width: 80px;
 }
+
 .headerTable {
     table-layout: fixed;
     text-align: right;
@@ -108,7 +109,7 @@
 }
 
 .optionListName {
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 /** development mode :)

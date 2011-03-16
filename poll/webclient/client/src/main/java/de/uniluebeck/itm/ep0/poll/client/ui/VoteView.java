@@ -10,15 +10,15 @@ public interface VoteView extends BasicView<VoteView.Presenter>, IsWidget {
     String getPollName();
 
     String getVoter();
-    
+
     void addOptionListView(final VoteOptionListView voteOptionListView);
 
     public interface Presenter extends BasicPresenter<VoteView> {
 
         void setPoll(XoPoll poll);
-        
+
         XoPoll getPoll();
-        
+
         void loadPoll();
 
         void save();
