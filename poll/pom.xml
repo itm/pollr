@@ -16,7 +16,7 @@
     </properties>
     <scm>
         <connection>
-            scm:svn:https://svn.itm.uni-luebeck.de/enterprise-it/ep0/poll
+            scm:git:http://ep00@enterprise-it.corona.itm.uni-luebeck.de/enterprise-it/ep00.git
         </connection>
     </scm>
     <modules>
@@ -72,7 +72,24 @@
             <url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
         </pluginRepository>
     </pluginRepositories>
+    <distributionManagement>
+        <repository>
+            <id>itm-maven-repository-releases</id>
+            <url>scpexe://nommensen@itm01.uni-luebeck.de/projects/maven/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>itm-maven-repository-snapshots</id>
+            <url>scpexe://nommensen@itm01.uni-luebeck.de/projects/maven/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -111,7 +128,7 @@
                     <version>2.6</version>
                     <dependencies>
                         <dependency>
-                            <groupId>eu.wisebed.wiseui</groupId>
+                            <groupId>de.uniluebeck.itm.ep0.poll</groupId>
                             <artifactId>build-tools</artifactId>
                             <version>${project.version}</version>
                         </dependency>
@@ -124,7 +141,15 @@
                         <headerLocation>LICENSE.txt</headerLocation>
                     </configuration>
                 </plugin>
-
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.1</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -154,20 +179,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <db.connection.username>nommensen</db.connection.username>
-                <db.connection.password>dbpass</db.connection.password>
-                <db.connection.url>itm01.itm.uni-luebeck.de:3306/enterprise_it_ep0</db.connection.url>
-            </properties>
-        </profile>
-        <profile>
-            <id>tunnel</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <db.connection.username>nommensen</db.connection.username>
-                <db.connection.password>dbpass</db.connection.password>
-                <db.connection.url>127.0.0.1:3333/enterprise_it_ep0</db.connection.url>
+                <db.connection.username>ep00</db.connection.username>
+                <db.connection.password>dbpass13</db.connection.password>
+                <db.connection.url>localhost/enterprise_it_ep00</db.connection.url>
             </properties>
         </profile>
         <profile>
@@ -179,9 +193,9 @@
                 </property>
             </activation>
             <properties>
-                <db.connection.username>nommensen</db.connection.username>
-                <db.connection.password>dbpass</db.connection.password>
-                <db.connection.url>itm01.itm.uni-luebeck.de:3306/test</db.connection.url>
+                <db.connection.username>${local.test.dbuser}</db.connection.username>
+                <db.connection.password>${local.test.dbpass}</db.connection.password>
+                <db.connection.url>${local.test.dbconnection}</db.connection.url>
             </properties>
         </profile>
     </profiles>
