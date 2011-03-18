@@ -15,7 +15,7 @@ import java.util.UUID;
 public class BoPoll implements Bo {
 
     @Transient
-    private final static Logger LOG = LoggerFactory.getLogger(BoPoll.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BoPoll.class);
     @Transient
     private static final long serialVersionUID = -980869932728084332L;
     @Id
@@ -52,7 +52,7 @@ public class BoPoll implements Bo {
         try {
             this.name = new BoLocalizedString(xoPoll.getName());
         } catch (final PollException e) {
-            LOG.error(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         this.optionLists = new ArrayList<BoOptionList>();
         for (XoOptionList xoOptionList : xoPoll.getOptionLists()) {
@@ -130,16 +130,16 @@ public class BoPoll implements Bo {
 
     @Override
     public String toString() {
-        return "BoPoll{" +
-                "id=" + id +
-                ", name=" + name +
-                ", optionLists=" + optionLists +
-                ", validFrom=" + validFrom +
-                ", validTo=" + validTo +
-                ", isPublic=" + isPublic +
-                ", uuid='" + uuid + '\'' +
-                ", adminUuid='" + adminUuid + '\'' +
-                '}';
+        return "BoPoll{"
+                + "id=" + id
+                + ", name=" + name
+                + ", optionLists=" + optionLists
+                + ", validFrom=" + validFrom
+                + ", validTo=" + validTo
+                + ", isPublic=" + isPublic
+                + ", uuid='" + uuid + '\''
+                + ", adminUuid='" + adminUuid + '\''
+                + '}';
     }
 
     @Override

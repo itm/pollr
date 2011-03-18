@@ -57,7 +57,6 @@
                   value="de.uniluebeck.itm.ep0.poll.service.PollService"/>
         <!-- defaults to 1099 -->
         <property name="registryPort" value="1199"/>
-
     </bean>
 
 </beans>

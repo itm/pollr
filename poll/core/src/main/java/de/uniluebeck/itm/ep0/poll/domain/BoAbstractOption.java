@@ -13,7 +13,7 @@ import javax.persistence.*;
 public abstract class BoAbstractOption implements Bo {
 
     @Transient
-    final static Logger LOG = LoggerFactory.getLogger(BoAbstractOption.class);
+    protected static final Logger LOGGER = LoggerFactory.getLogger(BoAbstractOption.class);
     @Transient
     private static final long serialVersionUID = 1L;
     @Id

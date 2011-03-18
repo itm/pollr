@@ -54,7 +54,9 @@ public class VoteOptionListViewImpl extends Composite implements VoteOptionListV
         return tblVotes.getRowCount();
     }
 
-    public void setVoteTableWidget(int row, int column, Widget widget) {
+    public void setVoteTableWidget(final int row,
+                                   final int column,
+                                   final Widget widget) {
         tblVotes.setWidget(row, column, widget);
     }
 

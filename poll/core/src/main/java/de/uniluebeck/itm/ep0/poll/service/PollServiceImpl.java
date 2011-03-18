@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 
 public class PollServiceImpl implements PollService {
 
-    private final static Logger LOG = LoggerFactory.getLogger(PollServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PollServiceImpl.class);
 
     private PollDao pollDao;
 
@@ -42,7 +42,7 @@ public class PollServiceImpl implements PollService {
         if (xoPoll == null) {
             throw new RemoteException("xoPoll == null");
         }
-        LOG.info("addPoll( " + xoPoll.getName() + " ) called");
+        LOGGER.info("addPoll( " + xoPoll.getName() + " ) called");
         BoPoll boPoll = null;
         if (xoPoll.getId() == null) {
             // Create a new persistent poll object
@@ -50,7 +50,7 @@ public class PollServiceImpl implements PollService {
                 boPoll = new BoPoll(xoPoll);
                 pollDao.add(boPoll);
             } catch (final PollException e) {
-                LOG.error(e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
             // Update an existing persistent object
@@ -58,7 +58,7 @@ public class PollServiceImpl implements PollService {
             if (boPoll != null) {
                 pollDao.update(boPoll);
             } else {
-                LOG.error("Poll with id #" + xoPoll.getId()
+                LOGGER.error("Poll with id #" + xoPoll.getId()
                         + " does not exist!");
             }
         }
@@ -77,7 +77,7 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional(readOnly = true)
     public List<XoPoll> getPolls() throws RemoteException {
-        LOG.info("getPolls() called");
+        LOGGER.info("getPolls() called");
         final List<XoPoll> xos = new ArrayList<XoPoll>();
         for (BoPoll bo : pollDao.findAll()) {
             xos.add(bo.toXo());
@@ -94,7 +94,7 @@ public class PollServiceImpl implements PollService {
         if (pollId == null) {
             throw new RemoteException("pollId == null");
         }
-        LOG.info("getPoll( " + pollId + " ) called");
+        LOGGER.info("getPoll( " + pollId + " ) called");
 
         return pollDao.findById(pollId).toXo();
     }
@@ -105,7 +105,7 @@ public class PollServiceImpl implements PollService {
         if (uuid == null) {
             throw new RemoteException("uuid == null");
         }
-        LOG.info("getPoll( " + uuid + " ) called");
+        LOGGER.info("getPoll( " + uuid + " ) called");
         BoPoll boPoll = pollDao.findByUuid(uuid);
         if (boPoll == null) {
             throw new RemoteException("Poll with UUID=" + uuid + " not found!");
@@ -123,7 +123,7 @@ public class PollServiceImpl implements PollService {
         if (null == optionListId) {
             throw new RemoteException("optionListId == null");
         }
-        LOG.info("getVotesForOptionList( " + optionListId + " ) called");
+        LOGGER.info("getVotesForOptionList( " + optionListId + " ) called");
 
         Map<String, List<XoVote>> result = new HashMap<String, List<XoVote>>();
 
@@ -156,7 +156,7 @@ public class PollServiceImpl implements PollService {
         if (pollId == null) {
             throw new RemoteException("pollId == null");
         }
-        LOG.info("removePoll( " + pollId + " ) called");
+        LOGGER.info("removePoll( " + pollId + " ) called");
         final BoPoll boPoll = pollDao.findById(pollId);
         if (boPoll != null && boPoll.getAdminUuid().equals(adminUuid)) {
             pollDao.remove(boPoll);
@@ -170,7 +170,7 @@ public class PollServiceImpl implements PollService {
         if (null == voteId) {
             throw new RemoteException("voteId == null");
         }
-        LOG.info("removeVote( " + voteId + " ) called");
+        LOGGER.info("removeVote( " + voteId + " ) called");
         final BoVote boVote = voteDao.findById(voteId);
         final BoPoll boPoll = pollDao.findByOptionId(boVote.getOptionId());
         if (boPoll.getAdminUuid().equals(adminUuid)) {
@@ -187,7 +187,7 @@ public class PollServiceImpl implements PollService {
         if (optionId == null) {
             throw new RemoteException("optionId == null");
         }
-        LOG.info("getVotes( " + optionId + " ) called");
+        LOGGER.info("getVotes( " + optionId + " ) called");
         final List<XoVote> xos = new ArrayList<XoVote>();
         for (BoVote bo : voteDao.findByOptionId(optionId)) {
             xos.add(bo.toXo());
@@ -204,7 +204,7 @@ public class PollServiceImpl implements PollService {
         if (xoVote == null) {
             throw new RemoteException("xoVote == null");
         }
-        LOG.info("addVote( " + xoVote.toString() + " ) called");
+        LOGGER.info("addVote( " + xoVote.toString() + " ) called");
 
         Integer optionId;
         try {
@@ -223,7 +223,7 @@ public class PollServiceImpl implements PollService {
                 xoVote.getVoter(), Integer.parseInt(xoVote.getOptionId()))
                 .isEmpty();
         if (!isUnique) {
-            LOG.info("The voter " + xoVote.getVoter()
+            LOGGER.info("The voter " + xoVote.getVoter()
                     + " already voted for the option " + xoVote.getOptionId()
                     + "!");
             return null;
@@ -245,7 +245,7 @@ public class PollServiceImpl implements PollService {
         if (pollId == null) {
             throw new RemoteException("pollId == null");
         }
-        LOG.info("getMostPopularOption( " + pollId + " ) called");
+        LOGGER.info("getMostPopularOption( " + pollId + " ) called");
         final BoOptionList boOptionList = pollDao.findOptionList(pollId,
                 optionListId);
         BoAbstractOption result = new BoTextOption();
@@ -270,7 +270,7 @@ public class PollServiceImpl implements PollService {
     @Transactional(readOnly = true)
     public List<XoPollInfo> getPollInfos(final boolean onlyValidPublic)
             throws RemoteException {
-        LOG.info("getPollInfos (" + onlyValidPublic + ") called");
+        LOGGER.info("getPollInfos (" + onlyValidPublic + ") called");
         final List<XoPollInfo> result = new ArrayList<XoPollInfo>();
         for (BoPoll bo : pollDao.findAll()) {
             try {
@@ -281,7 +281,7 @@ public class PollServiceImpl implements PollService {
                             .getUuid(), bo.getName().toXo()));
                 }
             } catch (final PollException ex) {
-                LOG.error(ex.getMessage());
+                LOGGER.error(ex.getMessage());
                 throw new RemoteException(ex.getMessage(), ex);
             }
         }
@@ -303,7 +303,7 @@ public class PollServiceImpl implements PollService {
             }
             return result;
         } catch (final PollException ex) {
-            LOG.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
             throw new RemoteException(ex.getMessage(), ex);
         }
     }

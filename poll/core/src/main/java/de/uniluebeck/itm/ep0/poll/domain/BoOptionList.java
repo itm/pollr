@@ -13,7 +13,7 @@ import java.util.List;
 public class BoOptionList implements Bo {
 
     @Transient
-    private final static Logger LOG = LoggerFactory.getLogger(BoOptionList.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BoOptionList.class);
     @Transient
     private static final long serialVersionUID = -1880503413753517504L;
     @Id
@@ -82,12 +82,12 @@ public class BoOptionList implements Bo {
 
     @Override
     public String toString() {
-        return "BoOptionList{" +
-                "id=" + id +
-                ", name=" + name +
-                ", options=" + options.toString() +
-                ", poll=" + poll.getName() +
-                '}';
+        return "BoOptionList{"
+                + "id=" + id
+                + ", name=" + name
+                + ", options=" + options.toString()
+                + ", poll=" + poll.getName()
+                + '}';
     }
 
     @Override
@@ -102,7 +102,7 @@ public class BoOptionList implements Bo {
                     xoOptions.add((XoTextOption) option.toXo());
                 }
             } catch (final PollException ex) {
-                LOG.error(ex.getMessage(), ex);
+                LOGGER.error(ex.getMessage(), ex);
             }
         }
 
@@ -110,7 +110,7 @@ public class BoOptionList implements Bo {
         try {
             xoOptionList = new XoOptionList(this.id.toString(), this.name.toXo(), xoOptions);
         } catch (final PollException e) {
-            LOG.error(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         return xoOptionList;

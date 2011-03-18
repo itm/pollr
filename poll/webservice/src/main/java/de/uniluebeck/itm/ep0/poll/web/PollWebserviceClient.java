@@ -20,8 +20,8 @@ import javax.xml.ws.WebServiceFeature;
 public class PollWebserviceClient
         extends Service {
 
-    private final static URL POLLSERVICE_WSDL_LOCATION;
-    private final static Logger logger = Logger
+    private static final URL POLLSERVICE_WSDL_LOCATION;
+    private static final Logger LOGGER = Logger
             .getLogger(de.uniluebeck.itm.ep0.poll.web.PollWebserviceClient.class
                     .getName());
 
@@ -33,8 +33,9 @@ public class PollWebserviceClient
                     .getResource(".");
             url = new URL(baseUrl, "http://localhost:8080/poll");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:8080/poll', retrying as a local file");
-            logger.warning(e.getMessage());
+            LOGGER.warning("Failed to create URL for the wsdl Location: 'http://localhost:8080/poll', "
+                    + "retrying as a local file");
+            LOGGER.warning(e.getMessage());
         }
         POLLSERVICE_WSDL_LOCATION = url;
     }
@@ -51,17 +52,18 @@ public class PollWebserviceClient
      * @return returns PollWebService
      */
     @WebEndpoint(name = "PollWebServicePort")
-    public PollWebService getPollWebServicePort() {
+    public final PollWebService getPollWebServicePort() {
         return super.getPort(new QName("www.itm.uniluebeck.de/pollservice",
                 "PollWebServicePort"), PollWebService.class);
     }
 
     /**
-     * @param features A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
+     * @param features A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.
+     * Supported features not in the <code>features</code> parameter will have their default values.
      * @return returns PollWebService
      */
     @WebEndpoint(name = "PollWebServicePort")
-    public PollWebService getPollWebServicePort(WebServiceFeature... features) {
+    public final PollWebService getPollWebServicePort(WebServiceFeature... features) {
         return super.getPort(new QName("www.itm.uniluebeck.de/pollservice",
                 "PollWebServicePort"), PollWebService.class, features);
     }

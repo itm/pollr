@@ -11,9 +11,7 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "vote", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-                "voter", "option_id"})})
+@Table(name = "vote", uniqueConstraints = {@UniqueConstraint(columnNames = {"voter", "option_id"})})
 public class BoVote implements Bo {
 
     @Transient
@@ -85,11 +83,11 @@ public class BoVote implements Bo {
 
     @Override
     public String toString() {
-        return "BoVote{" +
-                "id=" + id +
-                ", voter='" + voter + '\'' +
-                ", type=" + type +
-                ", optionId=" + optionId +
-                '}';
+        return "BoVote{"
+                + "id=" + id
+                + ", voter='" + voter + '\''
+                + ", type=" + type
+                + ", optionId=" + optionId
+                + '}';
     }
 }

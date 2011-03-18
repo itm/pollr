@@ -17,10 +17,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebService(targetNamespace = "www.itm.uniluebeck.de/pollservice", serviceName = "Pollservice", endpointInterface = "de.uniluebeck.itm.ep0.poll.web.PollWebService", portName = "PollWebServicePort")
+@WebService(targetNamespace = "www.itm.uniluebeck.de/pollservice", serviceName = "Pollservice",
+    endpointInterface = "de.uniluebeck.itm.ep0.poll.web.PollWebService", portName = "PollWebServicePort")
 public class PollWebServiceImpl implements PollWebService {
 
-    private final static Logger LOG = LoggerFactory
+    private static final Logger LOG = LoggerFactory
             .getLogger(PollWebService.class);
     private static final ApplicationContext CTX = new ClassPathXmlApplicationContext(
             "webservice-context.xml");
@@ -40,7 +41,7 @@ public class PollWebServiceImpl implements PollWebService {
     * de.uniluebeck.itm.ep0.poll.web.IPollWebService#getPolls(java.lang.String)
     */
     @Override
-    public List<XsPollInfo> getPolls(final String languageCode) {
+    public final List<XsPollInfo> getPolls(final String languageCode) {
         LOG.info("getPolls(" + languageCode + ") called from IP: " + getClientIp());
         List<XoPollInfo> pollInfos = new ArrayList<XoPollInfo>();
         try {
@@ -118,7 +119,9 @@ public class PollWebServiceImpl implements PollWebService {
         if (null == wsContext) return "<unknown>";
         MessageContext mc = wsContext.getMessageContext();
 
-        com.sun.net.httpserver.HttpExchange httpExchange = (com.sun.net.httpserver.HttpExchange) mc.get("com.sun.xml.internal.ws.http.exchange");
-        return (null != httpExchange && null != httpExchange.getRemoteAddress()) ? httpExchange.getRemoteAddress().toString() : "<unknown>";
+        com.sun.net.httpserver.HttpExchange httpExchange =
+                (com.sun.net.httpserver.HttpExchange) mc.get("com.sun.xml.internal.ws.http.exchange");
+        return (null != httpExchange && null != httpExchange.getRemoteAddress())
+                ? httpExchange.getRemoteAddress().toString() : "<unknown>";
     }
 }

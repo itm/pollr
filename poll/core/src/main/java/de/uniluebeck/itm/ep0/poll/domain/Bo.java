@@ -16,5 +16,5 @@ public interface Bo extends Serializable {
      * @throws PollException Thrown, if the
      *                       value for the given language cannot be found.
      */
-    public Xo toXo() throws PollException;
+    Xo toXo() throws PollException;
 }

@@ -26,7 +26,8 @@ public class BoTextOption extends BoAbstractOption {
         this.text = text;
     }
 
-    public BoTextOption(final Integer id, final BoLocalizedString text,
+    public BoTextOption(final Integer id,
+                        final BoLocalizedString text,
                         final BoLocalizedString description) {
         super(id, description);
         this.text = text;
@@ -49,23 +50,23 @@ public class BoTextOption extends BoAbstractOption {
     }
 
     @Override
-    public String toString() {
-        return "BoDateOption{" +
-                "id=" + getId() +
-                ", description=" + getDescription() +
-                ", optionList=" + getOptionList().getName() +
-                "text=" + text +
-                '}';
+    public final String toString() {
+        return "BoDateOption{" 
+                + "id=" + getId()
+                + ", description=" + getDescription()
+                + ", optionList=" + getOptionList().getName()
+                + "text=" + text
+                + '}';
     }
 
     @Override
-    public XoOption toXo() {
+    public final XoOption toXo() {
         XoTextOption xo = null;
         try {
             xo = new XoTextOption(getId().toString(), getText().toXo(), getDescription()
                     .toXo());
         } catch (final PollException ex) {
-            LOG.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
         return xo;
     }

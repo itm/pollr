@@ -42,23 +42,23 @@ public class BoDateOption extends BoAbstractOption {
     }
 
     @Override
-    public String toString() {
-        return "BoDateOption{" +
-                "id=" + getId() +
-                ", description=" + getDescription() +
-                ", optionList=" + getOptionList().getName() +
-                "dateOption=" + dateOption +
-                '}';
+    public final String toString() {
+        return "BoDateOption{"
+                + "id=" + getId()
+                + ", description=" + getDescription()
+                + ", optionList=" + getOptionList().getName()
+                + "dateOption=" + dateOption
+                + '}';
     }
 
     @Override
-    public XoDateOption toXo() {
+    public final XoDateOption toXo() {
         XoDateOption xo = null;
         try {
             xo = new XoDateOption(getId().toString(), getDateOption(),
                     getDescription().toXo());
         } catch (final PollException ex) {
-            LOG.error(ex.getMessage(), ex);
+            LOGGER.error(ex.getMessage(), ex);
         }
         return xo;
     }

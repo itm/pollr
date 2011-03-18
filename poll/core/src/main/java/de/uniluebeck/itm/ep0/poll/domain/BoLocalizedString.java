@@ -62,10 +62,10 @@ public class BoLocalizedString implements Bo {
 
     @Override
     public String toString() {
-        return "BoLocalizedString{" +
-                "id=" + id +
-                ", localizedValues=" + toStringHelper() +
-                '}';
+        return "BoLocalizedString{"
+                + "id=" + id
+                + ", localizedValues=" + toStringHelper()
+                + '}';
     }
 
     private String toStringHelper() {
