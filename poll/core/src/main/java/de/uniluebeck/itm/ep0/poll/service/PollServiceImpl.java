@@ -15,6 +15,7 @@ import de.uniluebeck.itm.ep0.poll.exception.PollException;
 import de.uniluebeck.itm.ep0.poll.util.PollUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+@Service("PollPersistenceService")
 public class PollServiceImpl implements PollService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PollServiceImpl.class);
