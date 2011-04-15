@@ -44,7 +44,7 @@ public abstract class AbstractDaoImpl<T> implements Dao<T> {
     @Override
     public List<T> findAll() {
         return entityManager.createQuery(
-                "SELECT x FROM " + persistentClass.getName() + " x", persistentClass).getResultList();
+                String.format("SELECT x FROM %s x", persistentClass.getName()), persistentClass).getResultList();
     }
 
     public Class<T> getPersistentClass() {
