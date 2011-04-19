@@ -27,14 +27,12 @@ import org.springframework.util.Assert;
 import javax.xml.namespace.QName;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class PollClientServiceImpl extends RemoteServiceServlet implements
-        PollClientService {
+public class PollClientServiceImpl extends RemoteServiceServlet implements PollClientService {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,23 +40,23 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
 
     private final static String POLL_SERVICE_NULL = "pollService is NULL!";
     private final static String REMOTE_CALL_FAILED = "Remote call failed: ";
-    private final static String COMMUNICATION_ERROR_WITH_APP_CORE = "Could not communicate with application core! Maybe it's not running?";
+    private final static String COMMUNICATION_ERROR_WITH_APP_CORE =
+            "Could not communicate with application core! Maybe it's not running?";
     private final static String LANGUAGE_FETCH_ERROR = "Error fetching languages!";
     private static final String COMMUNICATION_ERROR_WITH_REMOTE_WS = "Error contacting remote web service: ";
 
-    private final static QName qName = new QName(
-            "www.itm.uniluebeck.de/pollservice", "Pollservice");
+    private final static QName QNAME = new QName("www.itm.uniluebeck.de/pollservice", "Pollservice");
 
     /**
-     * RMI poll service.
+     * Remote poll service.
      */
-    private PollService rmiPollService;
+    private PollService remotePollService;
 
     public PollClientServiceImpl() throws RemotePollException {
         ApplicationContext ctx;
         try {
             ctx = new ClassPathXmlApplicationContext("gwt-server-context.xml");
-            rmiPollService = (PollService) ctx.getBean("pollService");
+            remotePollService = (PollService) ctx.getBean("pollService");
         } catch (final BeanCreationException ex) {
             LOG.error(COMMUNICATION_ERROR_WITH_APP_CORE, ex);
             throw new RemotePollException(COMMUNICATION_ERROR_WITH_APP_CORE);
@@ -69,9 +67,9 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
     public List<XoPoll> getPolls() throws RemotePollException {
         LOG.info("getPolls() called");
         List<XoPoll> polls;
-        if (rmiPollService != null) {
+        if (remotePollService != null) {
             try {
-                polls = rmiPollService.getPolls();
+                polls = remotePollService.getPolls();
             } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
@@ -88,9 +86,9 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
     public XoPoll getPoll(final Integer id) throws RemotePollException {
         LOG.info("getPoll( " + id + " ) called");
         XoPoll poll;
-        if (rmiPollService != null) {
+        if (remotePollService != null) {
             try {
-                poll = rmiPollService.getPoll(id);
+                poll = remotePollService.getPoll(id);
             } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
@@ -112,9 +110,9 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
 
         if ("".equals(remoteURL)) {
 
-            if (rmiPollService != null) {
+            if (remotePollService != null) {
                 try {
-                    poll = rmiPollService.getPoll(uuid);
+                    poll = remotePollService.getPoll(uuid);
                 } catch (final PollException ex) {
                     LOG.error(REMOTE_CALL_FAILED);
                     throw new RemotePollException(REMOTE_CALL_FAILED
@@ -134,9 +132,9 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
     public XoPoll addPoll(final XoPoll poll) throws RemotePollException {
         LOG.info("addPoll( " + poll.getName() + " ) called");
         XoPoll persistedPoll;
-        if (rmiPollService != null) {
+        if (remotePollService != null) {
             try {
-                persistedPoll = rmiPollService.addPoll(poll);
+                persistedPoll = remotePollService.addPoll(poll);
             } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
@@ -160,9 +158,9 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
 
         } else {
             List<XoPollInfo> pollInfos;
-            if (rmiPollService != null) {
+            if (remotePollService != null) {
                 try {
-                    pollInfos = rmiPollService.getPollInfos(Boolean.FALSE);
+                    pollInfos = remotePollService.getPollInfos(Boolean.FALSE);
                 } catch (final PollException ex) {
                     LOG.error(REMOTE_CALL_FAILED + ex.getLocalizedMessage());
                     throw new RemotePollException(REMOTE_CALL_FAILED
@@ -184,9 +182,9 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
     public List<XoVote> getVotes(Integer optionId) throws RemotePollException {
         LOG.info("getVotes( " + optionId + " ) called");
         List<XoVote> votes;
-        if (rmiPollService != null) {
+        if (remotePollService != null) {
             try {
-                votes = rmiPollService.getVotes(optionId);
+                votes = remotePollService.getVotes(optionId);
             } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
@@ -204,9 +202,9 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
             throws RemotePollException {
         LOG.info("getVotesForOptionList( " + optionListId + " ) called");
         Map<String, List<XoVote>> votes;
-        if (rmiPollService != null) {
+        if (remotePollService != null) {
             try {
-                votes = rmiPollService.getVotesForOptionList(optionListId);
+                votes = remotePollService.getVotesForOptionList(optionListId);
             } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
@@ -253,7 +251,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
         LOG.info("getPollWebService called with url:" + url);
         PollWebserviceClient pc;
         try {
-            pc = new PollWebserviceClient(new URL(url), qName);
+            pc = new PollWebserviceClient(new URL(url), QNAME);
         } catch (MalformedURLException e) {
             LOG.error(COMMUNICATION_ERROR_WITH_REMOTE_WS);
             throw new RemotePollException(COMMUNICATION_ERROR_WITH_REMOTE_WS + e.getMessage(), e);
@@ -285,10 +283,10 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
     @Override
     public void vote(final List<XoVote> votes) throws RemotePollException {
         LOG.info("vote( " + votes.toString() + " ) called");
-        if (rmiPollService != null) {
+        if (remotePollService != null) {
             try {
                 for (XoVote vote : votes)
-                    rmiPollService.addVote(vote);
+                    remotePollService.addVote(vote);
             } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
