@@ -3,6 +3,7 @@ package de.uniluebeck.itm.ep0.poll.web;
 import de.uniluebeck.itm.ep0.poll.domain.VoteType;
 import de.uniluebeck.itm.ep0.poll.domain.XoPollInfo;
 import de.uniluebeck.itm.ep0.poll.domain.XoVote;
+import de.uniluebeck.itm.ep0.poll.exception.PollException;
 import de.uniluebeck.itm.ep0.poll.service.PollService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,8 +47,8 @@ public class PollWebServiceImpl implements PollWebService {
         List<XoPollInfo> pollInfos = new ArrayList<XoPollInfo>();
         try {
             pollInfos = SERVICE.getPollInfos(true);
-        } catch (final RemoteException ex) {
-            LOG.error(ex.getMessage());
+        } catch (final PollException ex) {
+            LOG.error(ex.getMessage(), ex);
             throw new RuntimeException(ex);
         }
         return XoXsMapper.xoPollInfo2xsPollInfo(pollInfos, languageCode);
@@ -70,8 +71,8 @@ public class PollWebServiceImpl implements PollWebService {
             result = addVotes(result);
 
             return result;
-        } catch (final RemoteException e) {
-            LOG.error(e.getMessage());
+        } catch (final PollException e) {
+            LOG.error(e.getMessage(), e);
         }
         return null;
     }
@@ -84,9 +85,9 @@ public class PollWebServiceImpl implements PollWebService {
                     option.setVotes(XoXsMapper.xoVotes2xsVotes(SERVICE
                             .getVotes(Integer.parseInt(option.getId()))));
                 } catch (final NumberFormatException e) {
-                    LOG.error(e.getMessage());
-                } catch (final RemoteException e) {
-                    LOG.error(e.getMessage());
+                    LOG.error(e.getMessage(), e);
+                } catch (final PollException e) {
+                    LOG.error(e.getMessage(), e);
                 }
             }
         }
@@ -109,19 +110,19 @@ public class PollWebServiceImpl implements PollWebService {
                 v.setOptionId(optionId);
                 SERVICE.addVote(v);
             }
-
-        } catch (final RemoteException ex) {
-            LOG.error(ex.getMessage());
+        } catch (final PollException ex) {
+            LOG.error(ex.getMessage(), ex);
         }
     }
 
     private String getClientIp() {
-        if (null == wsContext) return "<unknown>";
+        final String defaultAnswer = "<unknown IP>";
+        if (null == wsContext) return defaultAnswer;
         MessageContext mc = wsContext.getMessageContext();
 
         com.sun.net.httpserver.HttpExchange httpExchange =
                 (com.sun.net.httpserver.HttpExchange) mc.get("com.sun.xml.internal.ws.http.exchange");
         return (null != httpExchange && null != httpExchange.getRemoteAddress())
-                ? httpExchange.getRemoteAddress().toString() : "<unknown>";
+                ? httpExchange.getRemoteAddress().toString() : defaultAnswer;
     }
 }

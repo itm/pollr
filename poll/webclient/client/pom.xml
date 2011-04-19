@@ -14,8 +14,8 @@
     <packaging>war</packaging>
     <name>EP0: Poll Engine WebClient Client</name>
     <properties>
-        <maven.compiler.source>1.5</maven.compiler.source>
-        <maven.compiler.target>1.5</maven.compiler.target>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
     </properties>
     <dependencies>
@@ -50,7 +50,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.gwt.inject</groupId>
+            <groupId>com.google.gwt.inject</groupId>
             <artifactId>gin</artifactId>
         </dependency>
     </dependencies>
@@ -119,7 +119,7 @@
                             <arguments>
                                 <argument>${project.build.finalName}.war</argument>
                                 <argument>
-                                    soenke@enterprise-it:/var/enterprise-it/${artifactId}.war
+                                    soenke@enterprise-it:/var/enterprise-it/${project.artifactId}.war
                                 </argument>
                             </arguments>
                         </configuration>

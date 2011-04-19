@@ -7,13 +7,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class PollApplication {
 
-    private final static Logger LOG = LoggerFactory.getLogger(PollApplication.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(PollApplication.class);
 
     private final static String SPRING_CONFIG = "core-context.xml";
 
     public static void main(final String[] args) {
         // Create the spring container using the XML configuration from core-context.xml
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(SPRING_CONFIG);
-        LOG.info("Server started...");
+        LOGGER.info("Server started...");
     }
 }

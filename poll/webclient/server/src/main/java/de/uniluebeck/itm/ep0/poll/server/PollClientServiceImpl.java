@@ -9,6 +9,7 @@ import de.uniluebeck.itm.ep0.poll.domain.XoPollWithVotes;
 
 import de.uniluebeck.itm.ep0.poll.domain.XoVote;
 
+import de.uniluebeck.itm.ep0.poll.exception.PollException;
 import de.uniluebeck.itm.ep0.poll.service.PollService;
 import de.uniluebeck.itm.ep0.poll.shared.LoadPollsResult;
 import de.uniluebeck.itm.ep0.poll.shared.RemotePollException;
@@ -36,8 +37,9 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
         PollClientService {
 
     private static final long serialVersionUID = 1L;
-    private final static Logger LOG = LoggerFactory
-            .getLogger(PollClientServiceImpl.class);
+
+    private final static Logger LOG = LoggerFactory.getLogger(PollClientServiceImpl.class);
+
     private final static String POLL_SERVICE_NULL = "pollService is NULL!";
     private final static String REMOTE_CALL_FAILED = "Remote call failed: ";
     private final static String COMMUNICATION_ERROR_WITH_APP_CORE = "Could not communicate with application core! Maybe it's not running?";
@@ -70,7 +72,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
         if (rmiPollService != null) {
             try {
                 polls = rmiPollService.getPolls();
-            } catch (final RemoteException ex) {
+            } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
                         + ex.getMessage(), ex);
@@ -89,7 +91,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
         if (rmiPollService != null) {
             try {
                 poll = rmiPollService.getPoll(id);
-            } catch (final RemoteException ex) {
+            } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
                         + ex.getMessage(), ex);
@@ -113,7 +115,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
             if (rmiPollService != null) {
                 try {
                     poll = rmiPollService.getPoll(uuid);
-                } catch (final RemoteException ex) {
+                } catch (final PollException ex) {
                     LOG.error(REMOTE_CALL_FAILED);
                     throw new RemotePollException(REMOTE_CALL_FAILED
                             + ex.getMessage(), ex);
@@ -135,7 +137,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
         if (rmiPollService != null) {
             try {
                 persistedPoll = rmiPollService.addPoll(poll);
-            } catch (final RemoteException ex) {
+            } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
                         + ex.getMessage(), ex);
@@ -161,7 +163,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
             if (rmiPollService != null) {
                 try {
                     pollInfos = rmiPollService.getPollInfos(Boolean.FALSE);
-                } catch (final RemoteException ex) {
+                } catch (final PollException ex) {
                     LOG.error(REMOTE_CALL_FAILED + ex.getLocalizedMessage());
                     throw new RemotePollException(REMOTE_CALL_FAILED
                             + ex.getMessage(), ex);
@@ -185,7 +187,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
         if (rmiPollService != null) {
             try {
                 votes = rmiPollService.getVotes(optionId);
-            } catch (final RemoteException ex) {
+            } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
                         + ex.getMessage(), ex);
@@ -205,7 +207,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
         if (rmiPollService != null) {
             try {
                 votes = rmiPollService.getVotesForOptionList(optionListId);
-            } catch (final RemoteException ex) {
+            } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
                         + ex.getMessage(), ex);
@@ -287,7 +289,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements
             try {
                 for (XoVote vote : votes)
                     rmiPollService.addVote(vote);
-            } catch (final RemoteException ex) {
+            } catch (final PollException ex) {
                 LOG.error(REMOTE_CALL_FAILED);
                 throw new RemotePollException(REMOTE_CALL_FAILED
                         + ex.getMessage(), ex);

@@ -129,20 +129,6 @@ public class BoPoll implements Bo {
     }
 
     @Override
-    public String toString() {
-        return "BoPoll{"
-                + "id=" + id
-                + ", name=" + name
-                + ", optionLists=" + optionLists
-                + ", validFrom=" + validFrom
-                + ", validTo=" + validTo
-                + ", isPublic=" + isPublic
-                + ", uuid='" + uuid + '\''
-                + ", adminUuid='" + adminUuid + '\''
-                + '}';
-    }
-
-    @Override
     public XoPoll toXo() {
         final List<XoOptionList> xoOptionLists = new ArrayList<XoOptionList>(
                 getOptionLists().size());
@@ -158,5 +144,19 @@ public class BoPoll implements Bo {
         final XoPoll result = new XoPoll(this.id.toString(), xoName, xoOptionLists, validFrom, validTo, isPublic);
         result.setUuid(uuid);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "BoPoll{"
+                + "id=" + id
+                + ", name=" + name
+                + ", optionLists=" + optionLists
+                + ", validFrom=" + validFrom
+                + ", validTo=" + validTo
+                + ", isPublic=" + isPublic
+                + ", uuid='" + uuid + '\''
+                + ", adminUuid='" + adminUuid + '\''
+                + '}';
     }
 }

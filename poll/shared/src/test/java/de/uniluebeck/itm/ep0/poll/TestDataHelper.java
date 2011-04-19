@@ -6,6 +6,7 @@ import de.uniluebeck.itm.ep0.poll.domain.XoOption;
 import de.uniluebeck.itm.ep0.poll.domain.XoOptionList;
 import de.uniluebeck.itm.ep0.poll.domain.XoPoll;
 import de.uniluebeck.itm.ep0.poll.domain.XoTextOption;
+import de.uniluebeck.itm.ep0.poll.exception.PollException;
 import de.uniluebeck.itm.ep0.poll.service.PollService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,7 +99,7 @@ public class TestDataHelper {
             poll.setIsPublic(Boolean.TRUE);
 
             return service.addPoll(poll);
-        } catch (final RemoteException ex) {
+        } catch (final PollException ex) {
             LOG.error(ex.getMessage());
         }
         return null;

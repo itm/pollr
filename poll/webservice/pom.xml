@@ -53,11 +53,6 @@
             <artifactId>http</artifactId>
             <version>20070405</version>
         </dependency>
-        <!-- Test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
     </dependencies>
     <profiles>
         <profile>

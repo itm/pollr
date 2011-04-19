@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
-	http://www.springframework.org/schema/tx 
-	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <!--
       Persistence and transaction management
@@ -29,24 +32,9 @@
     <!-- Allows the use of @Transactional to configure transactions -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!--
-      Our beans
-    -->
-
-    <bean id="pollDao"
-          class="de.uniluebeck.itm.ep0.poll.dao.PollDaoImpl">
-    </bean>
-
-    <bean id="voteDao"
-          class="de.uniluebeck.itm.ep0.poll.dao.VoteDaoImpl">
-    </bean>
-
-    <!-- This is our service object that we want to make transactional -->
-    <bean id="pollService"
-          class="de.uniluebeck.itm.ep0.poll.service.PollServiceImpl">
-        <property name="pollDao" ref="pollDao"/>
-        <property name="voteDao" ref="voteDao"/>
-    </bean>
+    <!-- Allows the use of @Repository, @Service, @Component to mark Spring components -->
+    <context:component-scan base-package="de.uniluebeck.itm.ep0.poll"/>
+    <context:annotation-config/>
 
     <!-- Expose the poll service via RMI -->
     <bean id="rmiServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">

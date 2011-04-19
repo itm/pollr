@@ -16,24 +16,26 @@ import de.uniluebeck.itm.ep0.poll.util.Checks;
 import de.uniluebeck.itm.ep0.poll.util.PollUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-@Service("PollPersistenceService")
+@Service("pollService")
 public class PollServiceImpl implements PollService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PollServiceImpl.class);
 
+    @Autowired
     private PollDao pollDao;
 
+    @Autowired
     private VoteDao voteDao;
 
     /**
@@ -41,18 +43,14 @@ public class PollServiceImpl implements PollService {
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public XoPoll addPoll(final XoPoll xoPoll) throws RemoteException {
+    public XoPoll addPoll(final XoPoll xoPoll) throws PollException {
         Checks.notNullArgument(xoPoll, "xoPoll == null");
         LOGGER.info("addPoll( " + xoPoll.getName() + " ) called");
-        BoPoll boPoll = null;
+        BoPoll boPoll;
         if (xoPoll.getId() == null) {
             // Create a new persistent poll object
-            try {
-                boPoll = new BoPoll(xoPoll);
-                pollDao.add(boPoll);
-            } catch (final PollException e) {
-                LOGGER.error(e.getMessage());
-            }
+            boPoll = new BoPoll(xoPoll);
+            pollDao.add(boPoll);
         } else {
             // Update an existing persistent object
             boPoll = pollDao.findById(Integer.parseInt(xoPoll.getId()));
@@ -75,7 +73,7 @@ public class PollServiceImpl implements PollService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<XoPoll> getPolls() throws RemoteException {
+    public List<XoPoll> getPolls() throws PollException {
         LOGGER.info("getPolls() called");
         final List<XoPoll> xos = new ArrayList<XoPoll>();
         for (BoPoll bo : pollDao.findAll()) {
@@ -89,7 +87,7 @@ public class PollServiceImpl implements PollService {
      */
     @Override
     @Transactional(readOnly = true)
-    public XoPoll getPoll(final Integer pollId) throws RemoteException {
+    public XoPoll getPoll(final Integer pollId) throws PollException {
         Checks.notNullArgument(pollId, "pollId == null");
         LOGGER.info("getPoll( " + pollId + " ) called");
         BoPoll bo = pollDao.findById(pollId);
@@ -100,7 +98,7 @@ public class PollServiceImpl implements PollService {
 
     @Override
     @Transactional(readOnly = true)
-    public XoPoll getPoll(final String uuid) throws RemoteException {
+    public XoPoll getPoll(final String uuid) throws PollException {
         Checks.notNullArgument(uuid, "uuid == null");
         LOGGER.info("getPoll( " + uuid + " ) called");
         BoPoll boPoll = pollDao.findByUuid(uuid);
@@ -114,7 +112,7 @@ public class PollServiceImpl implements PollService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Map<String, List<XoVote>> getVotesForOptionList(final Integer optionListId) throws RemoteException {
+    public Map<String, List<XoVote>> getVotesForOptionList(final Integer optionListId) throws PollException {
         Checks.notNullArgument(optionListId, "optionListId == null");
         LOGGER.info("getVotesForOptionList( " + optionListId + " ) called");
         Map<String, List<XoVote>> result = new HashMap<String, List<XoVote>>();
@@ -142,7 +140,7 @@ public class PollServiceImpl implements PollService {
      */
     @Override
     @Transactional
-    public void removePoll(final Integer pollId, final String adminUuid) throws RemoteException {
+    public void removePoll(final Integer pollId, final String adminUuid) throws PollException {
         Checks.notNullArgument(pollId, "pollId == null");
         Checks.notNullArgument(adminUuid, "adminUuid == null");
         LOGGER.info("removePoll( " + pollId + " ) called");
@@ -154,8 +152,7 @@ public class PollServiceImpl implements PollService {
 
     @Override
     @Transactional
-    public void removeVote(final Integer voteId, final String adminUuid)
-            throws RemoteException {
+    public void removeVote(final Integer voteId, final String adminUuid) throws PollException {
         Checks.notNullArgument(voteId, "voteId == null");
         Checks.notNullArgument(adminUuid, "adminUuid == null");
         LOGGER.info("removeVote( " + voteId + " ) called");
@@ -172,7 +169,7 @@ public class PollServiceImpl implements PollService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<XoVote> getVotes(final Integer optionId) throws RemoteException {
+    public List<XoVote> getVotes(final Integer optionId) throws PollException {
         Checks.notNullArgument(optionId, "optionId == null");
         LOGGER.info("getVotes( " + optionId + " ) called");
         final List<XoVote> xos = new ArrayList<XoVote>();
@@ -187,7 +184,7 @@ public class PollServiceImpl implements PollService {
      */
     @Override
     @Transactional
-    public XoVote addVote(final XoVote xoVote) throws RemoteException {
+    public XoVote addVote(final XoVote xoVote) throws PollException {
         Checks.notNullArgument(xoVote, "xoVote == null");
         LOGGER.info("addVote( " + xoVote.toString() + " ) called");
 
@@ -195,13 +192,13 @@ public class PollServiceImpl implements PollService {
         try {
             optionId = Integer.parseInt(xoVote.getOptionId());
         } catch (NumberFormatException ex) {
-            throw new RemoteException("optionId == null", ex);
+            throw new PollException("optionId == null", ex);
         }
 
         final boolean isValid = PollUtil.isValid(pollDao.findByOptionId(
                 optionId).toXo());
         if (!isValid) {
-            throw new RemoteException("poll is not valid");
+            throw new PollException("poll is not valid");
         }
 
         final boolean isUnique = voteDao.findByVoterAndOption(
@@ -227,7 +224,7 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional(readOnly = true)
     public XoOption getMostPopularOption(final Integer pollId,
-                                         final Integer optionListId) throws RemoteException, PollException {
+                                         final Integer optionListId) throws PollException {
         Checks.notNullArgument(pollId, "pollId == null");
         Checks.notNullArgument(optionListId, "openListId == null");
         LOGGER.info("getMostPopularOption( " + pollId + " ) called");
@@ -253,21 +250,15 @@ public class PollServiceImpl implements PollService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<XoPollInfo> getPollInfos(final boolean onlyValidPublic)
-            throws RemoteException {
+    public List<XoPollInfo> getPollInfos(final boolean onlyValidPublic) throws PollException {
         LOGGER.info("getPollInfos (" + onlyValidPublic + ") called");
         final List<XoPollInfo> result = new ArrayList<XoPollInfo>();
         for (BoPoll bo : pollDao.findAll()) {
-            try {
-                if (!onlyValidPublic
-                        || (PollUtil.isValid(bo.toXo()) && Boolean.TRUE
-                        .equals(bo.getIsPublic()))) {
-                    result.add(new XoPollInfo(bo.getId().toString(), bo
-                            .getUuid(), bo.getName().toXo()));
-                }
-            } catch (final PollException ex) {
-                LOGGER.error(ex.getMessage());
-                throw new RemoteException(ex.getMessage(), ex);
+            if (!onlyValidPublic
+                    || (PollUtil.isValid(bo.toXo()) && Boolean.TRUE
+                    .equals(bo.getIsPublic()))) {
+                result.add(new XoPollInfo(bo.getId().toString(), bo
+                        .getUuid(), bo.getName().toXo()));
             }
         }
         return result;
@@ -275,23 +266,18 @@ public class PollServiceImpl implements PollService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<XoPollInfo> findPoll(final String name) throws RemoteException {
+    public List<XoPollInfo> findPoll(final String name) throws PollException {
         Checks.notNullArgument(name, "name == null");
-        try {
-            List<BoPoll> polls = pollDao.findAll();
+        List<BoPoll> polls = pollDao.findAll();
 
-            polls = getMatches(polls, name);
+        polls = getMatches(polls, name);
 
-            List<XoPollInfo> result = new ArrayList<XoPollInfo>(polls.size());
-            for (BoPoll poll : polls) {
-                result.add(new XoPollInfo(poll.getId().toString(), poll
-                        .getUuid(), poll.getName().toXo()));
-            }
-            return result;
-        } catch (final PollException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-            throw new RemoteException(ex.getMessage(), ex);
+        List<XoPollInfo> result = new ArrayList<XoPollInfo>(polls.size());
+        for (BoPoll poll : polls) {
+            result.add(new XoPollInfo(poll.getId().toString(), poll
+                    .getUuid(), poll.getName().toXo()));
         }
+        return result;
     }
 
     private List<BoPoll> getMatches(final List<BoPoll> polls, final String name) {
@@ -308,23 +294,5 @@ public class PollServiceImpl implements PollService {
             }
         }
         return result;
-    }
-
-    /**
-     * Used by Spring to inject the PollDao.
-     *
-     * @param pollDao The poll dao
-     */
-    public void setPollDao(final PollDao pollDao) {
-        this.pollDao = pollDao;
-    }
-
-    /**
-     * Used by Spring to inject the VoteDao.
-     *
-     * @param voteDao The vote dao
-     */
-    public void setVoteDao(final VoteDao voteDao) {
-        this.voteDao = voteDao;
     }
 }

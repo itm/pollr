@@ -13,8 +13,14 @@
     <version>1.0</version>
     <name>EP0: Poll Engine WebClient</name>
     <properties>
-        <gwt.version>2.1.1</gwt.version>
+        <gwt.version>2.2.0</gwt.version>
     </properties>
+    <modules>
+        <module>api</module>
+        <module>shared</module>
+        <module>server</module>
+        <module>client</module>
+    </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -30,9 +36,9 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>com.googlecode.gwt.inject</groupId>
+                <groupId>com.google.gwt.inject</groupId>
                 <artifactId>gin</artifactId>
-                <version>1.0</version>
+                <version>1.5.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -42,15 +48,9 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>gwt-maven-plugin</artifactId>
-                    <version>2.1.0-1</version>
+                    <version>2.2.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
-    <modules>
-        <module>api</module>
-        <module>shared</module>
-        <module>server</module>
-        <module>client</module>
-    </modules>
 </project>
