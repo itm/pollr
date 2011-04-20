@@ -12,7 +12,10 @@ import de.uniluebeck.itm.ep0.poll.domain.XoPoll;
 import de.uniluebeck.itm.ep0.poll.domain.XoPollInfo;
 import de.uniluebeck.itm.ep0.poll.domain.XoVote;
 import de.uniluebeck.itm.ep0.poll.exception.PollException;
-import de.uniluebeck.itm.ep0.poll.util.Checks;
+
+import static de.uniluebeck.itm.ep0.poll.util.Checks.ifNullArgument;
+import static de.uniluebeck.itm.ep0.poll.util.Checks.ifNull;
+
 import de.uniluebeck.itm.ep0.poll.util.PollUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +47,7 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public XoPoll addPoll(final XoPoll xoPoll) throws PollException {
-        Checks.notNullArgument(xoPoll, "xoPoll == null");
+        ifNullArgument(xoPoll, "xoPoll == null");
         LOGGER.info("addPoll( " + xoPoll.getName() + " ) called");
         BoPoll boPoll;
         if (xoPoll.getId() == null) {
@@ -62,7 +65,7 @@ public class PollServiceImpl implements PollService {
             }
         }
         XoPoll result = boPoll.toXo();
-        Checks.notNull(result, "result == null");
+        ifNull(result, "result == null");
         result.setAdminUuid(boPoll.getAdminUuid());
 
         return result;
@@ -88,10 +91,10 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional(readOnly = true)
     public XoPoll getPoll(final Integer pollId) throws PollException {
-        Checks.notNullArgument(pollId, "pollId == null");
+        ifNullArgument(pollId, "pollId == null");
         LOGGER.info("getPoll( " + pollId + " ) called");
         BoPoll bo = pollDao.findById(pollId);
-        Checks.notNull(bo, "pollDao.findById(pollId) is null!");
+        ifNull(bo, "pollDao.findById(pollId) is null!");
 
         return bo.toXo();
     }
@@ -99,10 +102,10 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional(readOnly = true)
     public XoPoll getPoll(final String uuid) throws PollException {
-        Checks.notNullArgument(uuid, "uuid == null");
+        ifNullArgument(uuid, "uuid == null");
         LOGGER.info("getPoll( " + uuid + " ) called");
         BoPoll boPoll = pollDao.findByUuid(uuid);
-        Checks.notNull(boPoll, "Poll with UUID=" + uuid + " not found!");
+        ifNull(boPoll, "Poll with UUID=" + uuid + " not found!");
 
         return boPoll.toXo();
     }
@@ -113,7 +116,7 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional(readOnly = true)
     public Map<String, List<XoVote>> getVotesForOptionList(final Integer optionListId) throws PollException {
-        Checks.notNullArgument(optionListId, "optionListId == null");
+        ifNullArgument(optionListId, "optionListId == null");
         LOGGER.info("getVotesForOptionList( " + optionListId + " ) called");
         Map<String, List<XoVote>> result = new HashMap<String, List<XoVote>>();
         final BoOptionList optionList = pollDao
@@ -141,8 +144,8 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional
     public void removePoll(final Integer pollId, final String adminUuid) throws PollException {
-        Checks.notNullArgument(pollId, "pollId == null");
-        Checks.notNullArgument(adminUuid, "adminUuid == null");
+        ifNullArgument(pollId, "pollId == null");
+        ifNullArgument(adminUuid, "adminUuid == null");
         LOGGER.info("removePoll( " + pollId + " ) called");
         final BoPoll boPoll = pollDao.findById(pollId);
         if (boPoll != null && boPoll.getAdminUuid().equals(adminUuid)) {
@@ -153,11 +156,11 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional
     public void removeVote(final Integer voteId, final String adminUuid) throws PollException {
-        Checks.notNullArgument(voteId, "voteId == null");
-        Checks.notNullArgument(adminUuid, "adminUuid == null");
+        ifNullArgument(voteId, "voteId == null");
+        ifNullArgument(adminUuid, "adminUuid == null");
         LOGGER.info("removeVote( " + voteId + " ) called");
         final BoVote boVote = voteDao.findById(voteId);
-        Checks.notNull(boVote, "boVote == null");
+        ifNull(boVote, "boVote == null");
         final BoPoll boPoll = pollDao.findByOptionId(boVote.getOptionId());
         if (boPoll.getAdminUuid().equals(adminUuid)) {
             voteDao.remove(boVote);
@@ -170,7 +173,7 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional(readOnly = true)
     public List<XoVote> getVotes(final Integer optionId) throws PollException {
-        Checks.notNullArgument(optionId, "optionId == null");
+        ifNullArgument(optionId, "optionId == null");
         LOGGER.info("getVotes( " + optionId + " ) called");
         final List<XoVote> xos = new ArrayList<XoVote>();
         for (BoVote bo : voteDao.findByOptionId(optionId)) {
@@ -185,7 +188,7 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional
     public XoVote addVote(final XoVote xoVote) throws PollException {
-        Checks.notNullArgument(xoVote, "xoVote == null");
+        ifNullArgument(xoVote, "xoVote == null");
         LOGGER.info("addVote( " + xoVote.toString() + " ) called");
 
         Integer optionId;
@@ -212,7 +215,7 @@ public class PollServiceImpl implements PollService {
         }
 
         final BoVote boVote = new BoVote(xoVote);
-        Checks.notNull(boVote, "boVote == null");
+        ifNull(boVote, "boVote == null");
         voteDao.add(boVote);
 
         return boVote.toXo();
@@ -225,8 +228,8 @@ public class PollServiceImpl implements PollService {
     @Transactional(readOnly = true)
     public XoOption getMostPopularOption(final Integer pollId,
                                          final Integer optionListId) throws PollException {
-        Checks.notNullArgument(pollId, "pollId == null");
-        Checks.notNullArgument(optionListId, "openListId == null");
+        ifNullArgument(pollId, "pollId == null");
+        ifNullArgument(optionListId, "openListId == null");
         LOGGER.info("getMostPopularOption( " + pollId + " ) called");
         final BoOptionList boOptionList = pollDao.findOptionList(pollId,
                 optionListId);
@@ -267,7 +270,7 @@ public class PollServiceImpl implements PollService {
     @Override
     @Transactional(readOnly = true)
     public List<XoPollInfo> findPoll(final String name) throws PollException {
-        Checks.notNullArgument(name, "name == null");
+        ifNullArgument(name, "name == null");
         List<BoPoll> polls = pollDao.findAll();
 
         polls = getMatches(polls, name);
