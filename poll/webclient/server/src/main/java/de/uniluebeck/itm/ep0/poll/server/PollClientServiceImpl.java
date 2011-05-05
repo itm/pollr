@@ -55,7 +55,7 @@ public class PollClientServiceImpl extends RemoteServiceServlet implements PollC
     public PollClientServiceImpl() throws RemotePollException {
         ApplicationContext ctx;
         try {
-            ctx = new ClassPathXmlApplicationContext("gwt-server-context.xml");
+            ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
             remotePollService = (PollService) ctx.getBean("pollService");
         } catch (final BeanCreationException ex) {
             LOG.error(COMMUNICATION_ERROR_WITH_APP_CORE, ex);

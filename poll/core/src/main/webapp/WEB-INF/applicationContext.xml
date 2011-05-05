@@ -45,4 +45,10 @@
         <property name="registryPort" value="1199"/>
     </bean-->
 
+    <!-- Hessian exporter for the PollService -->
+    <!-- Hessian is a slim binary HTTP remoting protocol -->
+    <bean name="pollExporter" class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="service" ref="pollService"/>
+        <property name="serviceInterface" value="de.uniluebeck.itm.ep0.poll.service.PollService"/>
+    </bean> 
 </beans>

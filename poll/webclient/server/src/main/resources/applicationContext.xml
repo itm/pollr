@@ -5,12 +5,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="pollService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+    <!--bean id="pollService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
         <property name="serviceUrl" value="rmi://enterprise-it:1199/PollPersistenceService"/>
         <property name="serviceInterface"
                   value="de.uniluebeck.itm.ep0.poll.service.PollService"/>
         <property name="refreshStubOnConnectFailure" value="true"/>
 
+    </bean-->
+
+    <bean name="pollService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://0.0.0.0:8080/core/remoting/PollService"/>
+        <property name="serviceInterface" value="de.uniluebeck.itm.ep0.poll.service.PollService"/>
+        <property name="overloadEnabled" value="true"/>
     </bean>
 
     <!--bean class="de.uniluebeck.itm.ep0.poll.server.PollClientServiceImpl">

@@ -59,6 +59,11 @@
             <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+            <version>4.0.7</version>
+        </dependency>
+        <dependency>
             <groupId>de.uniluebeck.itm.ep0.poll</groupId>
             <artifactId>webservice</artifactId>
             <version>1.0</version>
