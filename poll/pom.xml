@@ -7,6 +7,7 @@
     <version>1.0</version>
     <name>EP0: Poll Engine</name>
     <packaging>pom</packaging>
+    <description>eit-projekt sommer 2011</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
