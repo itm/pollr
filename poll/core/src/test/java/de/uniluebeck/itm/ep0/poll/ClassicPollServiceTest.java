@@ -35,7 +35,7 @@ public class ClassicPollServiceTest {
 
     @Before
     public void setUp() {
-        final ApplicationContext ctx = new ClassPathXmlApplicationContext("core-context.xml");
+        final ApplicationContext ctx = new ClassPathXmlApplicationContext("testContext.xml");
         pollService = ctx.getBean(PollService.class);
     }
 

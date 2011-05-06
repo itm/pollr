@@ -12,7 +12,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.persistence.PersistenceException;
-import java.rmi.RemoteException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -30,9 +29,9 @@ public class PollServiceTest {
     public void simpleServiceUsage() throws PollException {
 
         // Create the spring container using the XML configuration in
-        // core-context.xml
+        // testContext.xml
         final ApplicationContext ctx = new ClassPathXmlApplicationContext(
-                "core-context.xml");
+                "testContext.xml");
 
         // Retrieve the beans we'll use during testing
         final PollService pollService = ctx.getBean(PollService.class);
