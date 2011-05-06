@@ -61,7 +61,7 @@
             <groupId>com.caucho</groupId>
             <artifactId>hessian</artifactId>
             <version>4.0.7</version>
-        </dependency>    
+        </dependency>
         <!-- Support for testing Spring applications with tools such as JUnit and
               TestNG This artifact is generally always defined with a 'test' scope for
               the integration testing framework and unit testing stubs -->
@@ -84,11 +84,11 @@
             <version>${org.hibernate.version}</version>
         </dependency>
         <!-- Hibernate c3p0 connection pool -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-c3p0</artifactId>
-			<version>${org.hibernate.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${org.hibernate.version}</version>
+        </dependency>
         <!-- Ehcache -->
         <!--dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-ehcache</artifactId>
               <version>${org.hibernate.version}</version> </dependency -->
@@ -113,6 +113,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>core</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -134,39 +135,16 @@
                     </archive>
                 </configuration>
             </plugin>
-            <!--plugin>
-                <groupId>org.dstovall</groupId>
-                <artifactId>onejar-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <attachToBuild>true</attachToBuild>
-                        </configuration>
-                        <goals>
-                            <goal>one-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>tomcat-maven-plugin</artifactId>
+                <version>1.1</version>
                 <configuration>
-                    <executable>java</executable>
-                    <workingDirectory>${project.build.directory}</workingDirectory>
-                    <arguments>
-                        <argument>-jar</argument>
-                        <argument>${project.build.finalName}.one-jar.jar</argument>
-                    </arguments>
+                    <server>enterprise-it</server>
+                    <path>/${project.build.finalName}</path>
+                    <url>http://enterprise-it.corona.itm.uni-luebeck.de:8080/manager</url>
                 </configuration>
-            </plugin-->
+            </plugin>
         </plugins>
         <resources>
             <resource>

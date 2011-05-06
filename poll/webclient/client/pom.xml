@@ -55,6 +55,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>webclient</finalName>
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
         <resources>
             <resource>
@@ -104,27 +105,13 @@
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
+                <artifactId>tomcat-maven-plugin</artifactId>
                 <version>1.1</version>
-                <executions>
-                    <execution>
-                        <id>upload</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>/usr/bin/scp</executable>
-                            <workingDirectory>${project.build.directory}</workingDirectory>
-                            <arguments>
-                                <argument>${project.build.finalName}.war</argument>
-                                <argument>
-                                    soenke@enterprise-it:/var/enterprise-it/${project.artifactId}.war
-                                </argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
+                <configuration>
+                    <server>enterprise-it</server>
+                    <path>/${project.build.finalName}</path>
+                    <url>http://enterprise-it.corona.itm.uni-luebeck.de:8080/manager</url>
+                </configuration>
             </plugin>
         </plugins>
     </build>

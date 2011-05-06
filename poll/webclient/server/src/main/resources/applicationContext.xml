@@ -17,9 +17,7 @@
         <property name="serviceUrl" value="http://0.0.0.0:8080/core/remoting/PollService"/>
         <property name="serviceInterface" value="de.uniluebeck.itm.ep0.poll.service.PollService"/>
         <property name="overloadEnabled" value="true"/>
+        <property name="hessian2Request" value="true"/>
+        <property name="hessian2Reply" value="true"/>
     </bean>
-
-    <!--bean class="de.uniluebeck.itm.ep0.poll.server.PollClientServiceImpl">
-        <property name="pollService" ref="pollService" />
-    </bean-->
 </beans>
