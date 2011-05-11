@@ -49,14 +49,16 @@ public class PollServiceImpl implements PollService {
     public XoPoll addPoll(final XoPoll xoPoll) throws PollException {
         ifNullArgument(xoPoll, "xoPoll == null");
         LOGGER.info("addPoll( " + xoPoll.getName() + " ) called");
-        BoPoll boPoll = new BoPoll(xoPoll);
+        BoPoll boPoll;
         if (xoPoll.getId() == null) {
             // Create a new persistent poll object
+            boPoll = new BoPoll(xoPoll);
             pollDao.add(boPoll);
         } else {
             // Update an existing persistent object
             boPoll = pollDao.findById(Integer.parseInt(xoPoll.getId()));
             ifNull(boPoll, "Poll with id #" + xoPoll.getId() + " does not exist!");
+            boPoll = new BoPoll(xoPoll);
             pollDao.update(boPoll);
         }
         XoPoll result = boPoll.toXo();
