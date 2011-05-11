@@ -12,10 +12,6 @@ import de.uniluebeck.itm.ep0.poll.domain.XoPoll;
 import de.uniluebeck.itm.ep0.poll.domain.XoPollInfo;
 import de.uniluebeck.itm.ep0.poll.domain.XoVote;
 import de.uniluebeck.itm.ep0.poll.exception.PollException;
-
-import static de.uniluebeck.itm.ep0.poll.util.Checks.ifNullArgument;
-import static de.uniluebeck.itm.ep0.poll.util.Checks.ifNull;
-
 import de.uniluebeck.itm.ep0.poll.util.PollUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +25,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import static de.uniluebeck.itm.ep0.poll.util.Checks.ifNull;
+import static de.uniluebeck.itm.ep0.poll.util.Checks.ifNullArgument;
 
 @Service("pollService")
 public class PollServiceImpl implements PollService {
@@ -50,12 +49,13 @@ public class PollServiceImpl implements PollService {
         ifNullArgument(xoPoll, "xoPoll == null");
         LOGGER.info("addPoll( " + xoPoll.getName() + " ) called");
         BoPoll boPoll;
+        // Do we already know this poll?
         if (xoPoll.getId() == null) {
-            // Create a new persistent poll object
+            // No => create a new persistent poll object and persist it
             boPoll = new BoPoll(xoPoll);
             pollDao.add(boPoll);
         } else {
-            // Update an existing persistent object
+            // Yes => update an existing persistent object
             boPoll = pollDao.findById(Integer.parseInt(xoPoll.getId()));
             ifNull(boPoll, "Poll with id #" + xoPoll.getId() + " does not exist!");
             boPoll = new BoPoll(xoPoll);
