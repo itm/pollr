@@ -13,6 +13,7 @@
 
     </bean-->
 
+    <!-- Client component for the Hession Service Exporter in the 'core' -->
     <bean name="pollService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
         <property name="serviceUrl" value="http://0.0.0.0:8080/core/remoting/PollService"/>
         <property name="serviceInterface" value="de.uniluebeck.itm.ep0.poll.service.PollService"/>
